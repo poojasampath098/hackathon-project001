@@ -1,0 +1,23 @@
+const TASK_STATUSES = ["pending", "in_progress", "completed", "failed", "cancelled"];
+const TASK_PRIORITIES = ["low", "medium", "high"];
+const MAX_TITLE_LENGTH = 200;
+const MAX_DESCRIPTION_LENGTH = 2000;
+const MAX_MESSAGE_LENGTH = 10000;
+
+const OTP_EXPIRY_MS = 10 * 60 * 1000;
+const OTP_MAX_ATTEMPTS = 5;
+
+const RATE_LIMIT_AI_WINDOW_MS = 60 * 1000;
+const RATE_LIMIT_AI_MAX = 10;
+
+module.exports = {
+  TASK_STATUSES,
+  TASK_PRIORITIES,
+  MAX_TITLE_LENGTH,
+  MAX_DESCRIPTION_LENGTH,
+  MAX_MESSAGE_LENGTH,
+  OTP_EXPIRY_MS,
+  OTP_MAX_ATTEMPTS,
+  RATE_LIMIT_AI_WINDOW_MS,
+  RATE_LIMIT_AI_MAX,
+};

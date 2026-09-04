@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes activity-pop-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.activity-pop-in {
+  animation: activity-pop-in 300ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ---- Aether ambient background (decorative only) ---- */
+body {
+  background-color: #f8f7fc;
+}
+
+.aether-shell {
+  position: relative;
+  isolation: isolate;
+  /* The decorative ::after drift animation translates/scale-fits beyond the
+     shell's box, expanding the document's scrollable area and producing a
+     horizontal scrollbar. clip contains that decorative layer without creating
+     a scroll container and without altering any layout. */
+  overflow-x: hidden;
+  overflow-x: clip;
+  background:
+    radial-gradient(900px 560px at 88% -6%, rgba(139, 92, 246, 0.10), transparent 62%),
+    radial-gradient(820px 520px at 4% 104%, rgba(99, 102, 241, 0.10), transparent 62%),
+    linear-gradient(150deg, #fefdff 0%, #f9f7fd 38%, #f4f1fb 72%, #f8f6fc 100%);
+}
+
+.aether-shell::before,
+.aether-shell::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* faint abstract AI network pattern: tiny nodes + very thin lines */
+.aether-shell::before {
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'520'%20height%3D'520'%20viewBox%3D'0%200%20520%20520'%3E%0A%3Cg%20stroke%3D'%238b5cf6'%20stroke-width%3D'1'%20stroke-opacity%3D'0.5'%20fill%3D'none'%3E%0A%3Cpath%20d%3D'M80%20120%20L200%2095%20L300%20150%20L235%20252%20L390%20305%20L305%20418'%2F%3E%0A%3Cpath%20d%3D'M120%20180%20L235%20252%20L150%20330'%2F%3E%0A%3C%2Fg%3E%0A%3Cg%20fill%3D'%238b5cf6'%3E%0A%3Ccircle%20cx%3D'80'%20cy%3D'120'%20r%3D'2.6'%2F%3E%3Ccircle%20cx%3D'200'%20cy%3D'95'%20r%3D'2.6'%2F%3E%3Ccircle%20cx%3D'300'%20cy%3D'150'%20r%3D'2.6'%2F%3E%0A%3Ccircle%20cx%3D'235'%20cy%3D'252'%20r%3D'3.4'%2F%3E%3Ccircle%20cx%3D'390'%20cy%3D'305'%20r%3D'2.6'%2F%3E%3Ccircle%20cx%3D'305'%20cy%3D'418'%20r%3D'2.6'%2F%3E%0A%3Ccircle%20cx%3D'120'%20cy%3D'180'%20r%3D'2.2'%2F%3E%3Ccircle%20cx%3D'150'%20cy%3D'330'%20r%3D'2.4'%2F%3E%0A%3C%2Fg%3E%0A%3Cg%20fill%3D'%238b5cf6'%20fill-opacity%3D'0.65'%3E%0A%3Ccircle%20cx%3D'420'%20cy%3D'120'%20r%3D'1.5'%2F%3E%3Ccircle%20cx%3D'452'%20cy%3D'262'%20r%3D'1.5'%2F%3E%3Ccircle%20cx%3D'92'%20cy%3D'360'%20r%3D'1.5'%2F%3E%0A%3Ccircle%20cx%3D'330'%20cy%3D'92'%20r%3D'1.5'%2F%3E%3Ccircle%20cx%3D'252'%20cy%3D'412'%20r%3D'1.5'%2F%3E%3Ccircle%20cx%3D'470'%20cy%3D'420'%20r%3D'1.5'%2F%3E%0A%3Ccircle%20cx%3D'182'%20cy%3D'60'%20r%3D'1.5'%2F%3E%3Ccircle%20cx%3D'62'%20cy%3D'278'%20r%3D'1.5'%2F%3E%3Ccircle%20cx%3D'360'%20cy%3D'470'%20r%3D'1.5'%2F%3E%0A%3Ccircle%20cx%3D'472'%20cy%3D'190'%20r%3D'1.5'%2F%3E%0A%3C%2Fg%3E%0A%3C%2Fsvg%3E");
+  background-size: 520px 520px;
+  opacity: 0.05;
+}
+
+/* extremely soft purple/indigo radial glows + blurred blob wash, slow drift */
+.aether-shell::after {
+  background:
+    radial-gradient(560px 360px at 72% 44%, rgba(196, 181, 253, 0.22), transparent 66%),
+    radial-gradient(460px 300px at 20% 10%, rgba(221, 214, 254, 0.5), transparent 66%),
+    radial-gradient(700px 480px at 50% 32%, rgba(237, 233, 254, 0.45), transparent 70%),
+    radial-gradient(520px 340px at 28% 88%, rgba(167, 139, 250, 0.12), transparent 66%);
+  animation: aether-drift 76s ease-in-out infinite;
+}
+
+@keyframes aether-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(26px, -20px, 0) scale(1.035); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aether-shell::after {
+    animation: none;
+  }
+  .activity-pop-in {
+    animation: none;
+  }
+}
