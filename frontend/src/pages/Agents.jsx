@@ -1,5 +1,5 @@
 import { useState, useCallback, useMemo, useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
   Send,
   Mic,
@@ -1163,9 +1163,20 @@ export default function Agents() {
             </div>
 
             {/* Upcoming Today */}
-            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-3">
-              Upcoming Today
-            </p>
+            <div className="flex items-center justify-between mb-3">
+              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">
+                Upcoming Today
+              </p>
+              {scheduled.length > 3 && (
+                <Link
+                  to="/upcoming-today"
+                  className="text-xs text-purple-600 font-medium hover:underline"
+                  aria-label="View all upcoming tasks today"
+                >
+                  View All
+                </Link>
+              )}
+            </div>
             <div className="flex flex-col gap-2.5 flex-1">
               {tasksLoading ? (
                 <div className="flex items-center justify-center py-8">
@@ -1176,7 +1187,7 @@ export default function Agents() {
               ) : scheduled.length === 0 ? (
                 <p className="text-xs text-gray-400 py-4 text-center">No scheduled tasks</p>
               ) : (
-                scheduled.map((task) => (
+                scheduled.slice(0, 3).map((task) => (
                   <div
                     key={task.id}
                     className="border border-gray-100 rounded-lg p-3 hover:bg-gray-50 transition"

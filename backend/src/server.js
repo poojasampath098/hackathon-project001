@@ -26,6 +26,9 @@ const taskWorker = require("./execution/task.worker");
 
 const app = express();
 
+logger.info(`AI provider: NVIDIA NIM`);
+logger.info(`AI model: ${config.aiModel}`);
+
 app.use(helmet());
 app.use(express.json());
 app.use(

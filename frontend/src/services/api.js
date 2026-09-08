@@ -1,5 +1,6 @@
 const API_BASE = '/api';
 const TOKEN_KEY = 'aether_token';
+const REQUEST_TIMEOUT_MS = 20000;
 
 class ApiError extends Error {
   constructor(status, message) {
@@ -23,11 +24,24 @@ async function request(endpoint, options = {}) {
   if (token) headers.Authorization = `Bearer ${token}`;
 
   console.log(`[API] ${method} ${API_BASE}${endpoint}`);
-  const res = await fetch(`${API_BASE}${endpoint}`, {
-    credentials: 'include',
-    headers,
-    ...options,
-  });
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+  let res;
+  try {
+    res = await fetch(`${API_BASE}${endpoint}`, {
+      credentials: 'include',
+      headers,
+      ...options,
+      signal: controller.signal,
+    });
+  } catch (err) {
+    clearTimeout(timeout);
+    if (err && err.name === 'AbortError') {
+      throw new ApiError(0, `Request timed out after ${REQUEST_TIMEOUT_MS}ms`);
+    }
+    throw err;
+  }
+  clearTimeout(timeout);
 
   if (!res.ok) {
     let message = `API Error: ${res.status}`;

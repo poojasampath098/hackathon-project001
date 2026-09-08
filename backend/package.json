@@ -9,6 +9,7 @@
     "test": "jest --verbose --forceExit --detectOpenHandles"
   },
   "dependencies": {
+    "axios": "^1.20.0",
     "bcrypt": "^6.0.0",
     "cloudinary": "^2.11.0",
     "cors": "^2.8.5",

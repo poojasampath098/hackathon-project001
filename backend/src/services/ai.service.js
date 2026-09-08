@@ -2,7 +2,7 @@ const { getClient } = require("../core/ai.config");
 const config = require("../core/config");
 const logger = require("../core/logger");
 
-const MAX_RESPONSE_TOKENS = 2048;
+const MAX_RESPONSE_TOKENS = 1024;
 const REQUEST_TIMEOUT_MS = 30000;
 const MAX_IMAGE_BYTES = 5 * 1024 * 1024;
 
@@ -30,16 +30,23 @@ async function chatCompletion(messages) {
     const client = getClient();
 
     console.log("========== AI REQUEST ==========");
-    console.log("MODEL:", config.geminiModel);
+    console.log("MODEL:", config.aiModel);
     console.log("MESSAGE COUNT:", messages.length);
     console.log("================================");
 
     const response = await client.chat.completions.create(
       {
-        model: config.geminiModel,
+        model: config.aiModel,
         messages,
         max_tokens: MAX_RESPONSE_TOKENS,
         temperature: 0.7,
+        top_p: 0.95,
+        extra_body: {
+          chat_template_kwargs: {
+            thinking: false,
+          },
+        },
+        stream: false,
       },
       {
         timeout: REQUEST_TIMEOUT_MS,
