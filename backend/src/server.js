@@ -78,7 +78,7 @@ connectDatabase()
       logger.info(`Server running on port ${config.port}`, {
         env: config.nodeEnv,
       });
-      scheduleWorker.start();
+    //  scheduleWorker.start();
       taskWorker.startTaskWorker();
     });
   })
