@@ -1,7 +1,6 @@
 const API_BASE = '/api';
 const TOKEN_KEY = 'aether_token';
-const REQUEST_TIMEOUT_MS = 20000;
-
+const REQUEST_TIMEOUT_MS = 60000;
 class ApiError extends Error {
   constructor(status, message) {
     super(message);
