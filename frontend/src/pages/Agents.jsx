@@ -23,6 +23,8 @@ import { taskApi } from "../services/task.api";
 import { aiApi } from "../services/ai.api";
 import { artifactApi } from "../services/artifact.api";
 import { scheduleTypes, frequencyOptions, defaultNextRun } from "../utils/taskSchedule";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 const quickActions = ["Schedule a task", "Check status", "View recent logs"];
 
@@ -727,7 +729,7 @@ export default function Agents() {
   };
 
   return (
-    <div className="p-6 flex flex-col gap-6 flex-1">
+    <div className="px-6 pt-12 pb-6 flex flex-col gap-2.5 flex-1">
         {/* Top bar */}
         <div className="flex items-center justify-between">
           <div>
@@ -803,9 +805,9 @@ export default function Agents() {
                         <Bot className="w-3.5 h-3.5 text-white" />
                       </div>
                       <div className="bg-gray-100 rounded-xl rounded-tl-sm px-3.5 py-2.5 max-w-md">
-                        <p className="text-xs text-gray-700 leading-relaxed">
-                          {msg.text}
-                        </p>
+                        <div className="markdown-body">
+                          <Markdown remarkPlugins={[remarkGfm]}>{msg.text}</Markdown>
+                        </div>
                       </div>
                     </div>
                   );

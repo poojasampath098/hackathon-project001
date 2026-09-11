@@ -204,9 +204,6 @@ export default function TopBar({ showSearch = true, showHelp = true, rightConten
             <span className="flex-1 text-xs text-gray-400 truncate">
               Search tasks, agents, or anything
             </span>
-            <span className="text-[10px] bg-white border border-gray-200 rounded px-1.5 py-0.5 text-gray-400 font-medium shrink-0">
-              Ctrl+K
-            </span>
           </button>
           {openDropdown === "search" && (
             <div className="absolute right-0 top-full mt-2 w-80 bg-white rounded-xl shadow-lg border border-gray-100 z-50 overflow-hidden">
