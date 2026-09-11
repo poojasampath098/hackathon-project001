@@ -727,7 +727,7 @@ export default function Agents() {
   };
 
   return (
-    <div className="p-6 flex flex-col gap-6">
+    <div className="p-6 flex flex-col gap-6 flex-1">
         {/* Top bar */}
         <div className="flex items-center justify-between">
           <div>
@@ -741,9 +741,9 @@ export default function Agents() {
           <TopBar />
         </div>
 
-        <div className="grid grid-cols-3 gap-5 flex-1">
+        <div className="grid grid-cols-3 gap-5 flex-1 grid-rows-1">
           {/* Left: Chat Card */}
-          <div className="col-span-2 bg-white rounded-xl shadow-sm p-5 flex flex-col hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(147,51,234,0.25)] transition-all duration-200 ease-out">
+          <div className="col-span-2 bg-white rounded-xl shadow-sm p-5 flex flex-col hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(109,40,217,0.25)] transition-all duration-200 ease-out">
             <div className="mb-4">
               <h2 className="text-sm font-bold text-gray-900">
                 Talk to your Agent
@@ -767,15 +767,15 @@ export default function Agents() {
                 if (msg.role === "agent" && msg.type === "loading") {
                   return (
                     <div key={msg.id} className="flex gap-2.5">
-                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600 flex items-center justify-center shrink-0">
+                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center shrink-0">
                         <Bot className="w-3.5 h-3.5 text-white" />
                       </div>
-                      <div className="border border-purple-200 bg-purple-50/50 rounded-xl rounded-tl-sm px-4 py-3 max-w-md">
-                        <p className="text-[10px] font-bold text-purple-700 uppercase tracking-wider mb-1.5">
+                      <div className="border border-violet-200 bg-violet-50/50 rounded-xl rounded-tl-sm px-4 py-3 max-w-md">
+                        <p className="text-[10px] font-bold text-violet-800 uppercase tracking-wider mb-1.5">
                           Thinking
                         </p>
                         <div className="flex items-center gap-2">
-                          <span className="w-3 h-3 border-2 border-purple-600 border-t-transparent rounded-full animate-spin" />
+                          <span className="w-3 h-3 border-2 border-violet-700 border-t-transparent rounded-full animate-spin" />
                           <p className="text-xs text-gray-500">Processing your request...</p>
                         </div>
                       </div>
@@ -785,7 +785,7 @@ export default function Agents() {
                 if (msg.role === "agent" && msg.type === "error") {
                   return (
                     <div key={msg.id} className="flex gap-2.5">
-                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600 flex items-center justify-center shrink-0">
+                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center shrink-0">
                         <Bot className="w-3.5 h-3.5 text-white" />
                       </div>
                       <div className="border border-red-200 bg-red-50/60 rounded-xl rounded-tl-sm px-4 py-3 max-w-md">
@@ -799,7 +799,7 @@ export default function Agents() {
                 if (msg.role === "agent") {
                   return (
                     <div key={msg.id} className="flex gap-2.5">
-                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600 flex items-center justify-center shrink-0">
+                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center shrink-0">
                         <Bot className="w-3.5 h-3.5 text-white" />
                       </div>
                       <div className="bg-gray-100 rounded-xl rounded-tl-sm px-3.5 py-2.5 max-w-md">
@@ -813,7 +813,7 @@ export default function Agents() {
                 if (msg.type === "composed") {
                   return (
                     <div key={msg.id} className="flex gap-2.5 justify-end">
-                      <div className="bg-purple-600 rounded-xl rounded-tr-sm px-3.5 py-2.5 max-w-md flex flex-col gap-1.5">
+                      <div className="bg-gradient-to-br from-violet-600 to-violet-800 rounded-xl rounded-tr-sm px-3.5 py-2.5 max-w-md flex flex-col gap-1.5">
                         {(msg.attachments || []).map((att) => {
                           const isImg =
                             /^image\//i.test(
@@ -838,7 +838,7 @@ export default function Agents() {
                           <p className="text-xs text-white leading-relaxed">{msg.text}</p>
                         ) : null}
                       </div>
-                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600 flex items-center justify-center shrink-0">
+                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center shrink-0">
                         <span className="text-white text-[10px] font-bold">A</span>
                       </div>
                     </div>
@@ -848,7 +848,7 @@ export default function Agents() {
                   const fileAtts = msg.attachments && msg.attachments.length > 0 ? msg.attachments : [];
                   return (
                     <div key={msg.id} className="flex gap-2.5 justify-end">
-                      <div className="bg-purple-600 rounded-xl rounded-tr-sm px-3.5 py-2.5 max-w-md flex flex-col gap-1">
+                      <div className="bg-gradient-to-br from-violet-600 to-violet-800 rounded-xl rounded-tr-sm px-3.5 py-2.5 max-w-md flex flex-col gap-1">
                         {(fileAtts).map((att, i) => {
                           const isImg =
                             /^image\//i.test(
@@ -869,10 +869,10 @@ export default function Agents() {
                           );
                         })}
                         {msg.text ? (
-                          <p className="text-xs text-purple-100">{msg.text}</p>
+                          <p className="text-xs text-violet-100">{msg.text}</p>
                         ) : null}
                       </div>
-                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600 flex items-center justify-center shrink-0">
+                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center shrink-0">
                         <span className="text-white text-[10px] font-bold">A</span>
                       </div>
                     </div>
@@ -881,14 +881,14 @@ export default function Agents() {
                 if (msg.type === "audio" && msg.url) {
                   return (
                     <div key={msg.id} className="flex gap-2.5 justify-end">
-                      <div className="bg-purple-600 rounded-xl rounded-tr-sm px-3.5 py-2.5 max-w-md flex flex-col gap-1">
+                      <div className="bg-gradient-to-br from-violet-600 to-violet-800 rounded-xl rounded-tr-sm px-3.5 py-2.5 max-w-md flex flex-col gap-1">
                         <div className="flex items-center gap-1.5">
                           <Mic className="w-3.5 h-3.5 text-white/90" />
                           <p className="text-xs text-white font-medium">Voice message</p>
                         </div>
                         <audio controls src={msg.url} className="w-56" />
                       </div>
-                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600 flex items-center justify-center shrink-0">
+                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center shrink-0">
                         <span className="text-white text-[10px] font-bold">A</span>
                       </div>
                     </div>
@@ -896,12 +896,12 @@ export default function Agents() {
                 }
                 return (
                   <div key={msg.id} className="flex gap-2.5 justify-end">
-                    <div className="bg-purple-600 rounded-xl rounded-tr-sm px-3.5 py-2.5 max-w-md">
+                    <div className="bg-gradient-to-br from-violet-600 to-violet-800 rounded-xl rounded-tr-sm px-3.5 py-2.5 max-w-md">
                       <p className="text-xs text-white leading-relaxed">
                         {msg.text}
                       </p>
                     </div>
-                    <div className="w-7 h-7 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600 flex items-center justify-center shrink-0">
+                    <div className="w-7 h-7 rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center shrink-0">
                       <span className="text-white text-[10px] font-bold">A</span>
                     </div>
                   </div>
@@ -916,7 +916,7 @@ export default function Agents() {
                 <button
                   key={action}
                   onClick={() => handleQuickAction(action)}
-                  className="px-3 py-1.5 text-[10px] font-semibold text-purple-600 bg-purple-50 border border-purple-200 rounded-full hover:bg-purple-100 hover:border-purple-300 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out active:scale-95 active:shadow-[0_0_8px_rgba(139,92,246,0.3)]"
+                  className="px-3 py-1.5 text-[10px] font-semibold text-violet-700 bg-violet-50 border border-violet-200 rounded-full hover:bg-violet-100 hover:border-violet-400 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.35)] transition-all duration-200 ease-out active:scale-95 active:shadow-[0_0_8px_rgba(139,92,246,0.3)]"
                 >
                   {action}
                 </button>
@@ -939,13 +939,13 @@ export default function Agents() {
                   {selectedFiles.map((f, i) => (
                     <span
                       key={i}
-                      className="flex items-center gap-1.5 bg-purple-50 border border-purple-200 rounded-lg px-2.5 py-1.5 text-[11px] text-purple-700"
+                      className="flex items-center gap-1.5 bg-violet-50 border border-violet-200 rounded-lg px-2.5 py-1.5 text-[11px] text-violet-800"
                     >
                       <Paperclip className="w-3 h-3" />
                       {f.name}
                       <button
                         onClick={() => removeSelectedFile(i)}
-                        className="text-purple-400 hover:text-purple-700 transition"
+                        className="text-violet-500 hover:text-violet-800 transition"
                       >
                         <X className="w-3 h-3" />
                       </button>
@@ -955,7 +955,7 @@ export default function Agents() {
                 <button
                   onClick={handleUploadFiles}
                   disabled={uploadingFiles}
-                  className="flex items-center gap-1.5 w-fit px-3 py-1.5 text-[11px] font-semibold bg-purple-600 hover:bg-purple-700 text-white rounded-lg hover:-translate-y-0.5 hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.45)] active:scale-95 transition-all duration-200 ease-out disabled:opacity-50"
+                  className="flex items-center gap-1.5 w-fit px-3 py-1.5 text-[11px] font-semibold bg-gradient-to-br from-violet-600 to-violet-800 hover:from-violet-700 hover:to-violet-900 text-white rounded-lg hover:-translate-y-0.5 hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.45)] active:scale-95 transition-all duration-200 ease-out disabled:opacity-50"
                 >
                   {uploadingFiles ? (
                     <Loader className="w-3 h-3 animate-spin" />
@@ -975,7 +975,7 @@ export default function Agents() {
                 {composerAttachments.map((att) => (
                   <div
                     key={att.id}
-                    className="relative flex items-center gap-2 bg-purple-50 border border-purple-200 rounded-lg px-2.5 py-1.5 text-[11px] text-purple-700"
+                    className="relative flex items-center gap-2 bg-violet-50 border border-violet-200 rounded-lg px-2.5 py-1.5 text-[11px] text-violet-800"
                   >
                     {isImageAttachment(att) && attachmentImageUrl(att) ? (
                       <img
@@ -989,7 +989,7 @@ export default function Agents() {
                     <span className="max-w-[160px] truncate">{att.name}</span>
                     <button
                       onClick={() => removeComposerAttachment(att.id)}
-                      className="text-purple-400 hover:text-purple-700 transition"
+                      className="text-violet-500 hover:text-violet-800 transition"
                       title="Remove attachment"
                     >
                       <X className="w-3 h-3" />
@@ -1000,14 +1000,14 @@ export default function Agents() {
             )}
 
             {/* ---- CHAT INPUT WITH + MENU, VOICE & SEND ---- */}
-            <div className="flex items-center gap-2 border border-gray-200 rounded-xl px-3 py-2.5 bg-gray-50 focus-within:border-purple-300 focus-within:shadow-[0_0_8px_rgba(139,92,246,0.15)] transition-all duration-150">
+            <div className="flex items-center gap-2 border border-gray-200 rounded-xl px-3 py-2.5 bg-gray-50 focus-within:border-violet-400 focus-within:shadow-[0_0_8px_rgba(139,92,246,0.15)] transition-all duration-150">
               {voiceStatus === "recording" || voiceStatus === "processing" ? (
                 <>
                   {/* Recording / processing replaces the text input with a live waveform */}
                   <div className="flex items-center gap-2 h-6 flex-1 min-w-0">
-                    <Mic className="w-4 h-4 text-purple-600 shrink-0" />
+                    <Mic className="w-4 h-4 text-violet-700 shrink-0" />
                     {voiceStatus === "processing" && !liveTranscript ? (
-                      <Loader className="w-3.5 h-3.5 text-purple-600 animate-spin shrink-0" />
+                      <Loader className="w-3.5 h-3.5 text-violet-700 animate-spin shrink-0" />
                     ) : null}
                     <span className="text-xs text-gray-500 min-w-0 truncate shrink">
                       {voiceStatus === "processing"
@@ -1022,7 +1022,7 @@ export default function Agents() {
                       {Array.from({ length: WAVEFORM_BARS }).map((_, i) => (
                         <span
                           key={i}
-                          className="w-[3px] flex-1 max-w-[6px] rounded-full bg-purple-500"
+                          className="w-[3px] flex-1 max-w-[6px] rounded-full bg-violet-600"
                           style={{ height: 8, transition: "height 90ms ease-out" }}
                         />
                       ))}
@@ -1031,7 +1031,7 @@ export default function Agents() {
                   <button
                     onClick={stopVoiceRecording}
                     disabled={voiceStatus === "processing"}
-                    className="p-1.5 rounded-lg bg-purple-600 hover:bg-purple-700 hover:-translate-y-0.5 hover:scale-[1.05] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.45)] transition-all duration-200 ease-out active:scale-95 active:shadow-[0_0_8px_rgba(139,92,246,0.3)] disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="p-1.5 rounded-lg bg-gradient-to-br from-violet-600 to-violet-800 hover:from-violet-700 hover:to-violet-900 hover:-translate-y-0.5 hover:scale-[1.05] hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.45)] transition-all duration-200 ease-out active:scale-95 active:shadow-[0_0_8px_rgba(139,92,246,0.3)] disabled:opacity-50 disabled:cursor-not-allowed"
                     title="Stop and send voice message"
                     aria-label="Stop recording and send"
                   >
@@ -1044,9 +1044,9 @@ export default function Agents() {
                   <div ref={menuRef} className="relative">
                     <button
                       onClick={() => setShowMenu((v) => !v)}
-                      className="p-1.5 rounded-lg hover:bg-purple-100 hover:-translate-y-0.5 hover:scale-[1.05] transition-all duration-200 ease-out active:scale-95 active:shadow-[0_0_8px_rgba(139,92,246,0.3)]"
+                      className="p-1.5 rounded-lg hover:bg-violet-100 hover:-translate-y-0.5 hover:scale-[1.05] transition-all duration-200 ease-out active:scale-95 active:shadow-[0_0_8px_rgba(139,92,246,0.3)]"
                     >
-                      <Plus className="w-4 h-4 text-purple-600" />
+                      <Plus className="w-4 h-4 text-violet-700" />
                     </button>
                     {showMenu && (
                       <div
@@ -1057,7 +1057,7 @@ export default function Agents() {
                           <button
                             key={item.label}
                             onClick={() => handleMenuAction(item)}
-                            className="flex items-center gap-2 w-full px-4 py-2.5 text-sm text-black-400 hover:bg-purple-50 transition-colors"
+                            className="flex items-center gap-2 w-full px-4 py-2.5 text-sm text-black-400 hover:bg-violet-50 transition-colors"
                           >
                             <item.icon className="w-4 h-4 text-black-400" />
                             {item.label}
@@ -1079,7 +1079,7 @@ export default function Agents() {
                   {/* Mic button */}
                   <button
                     onClick={startVoiceRecording}
-                    className="p-1.5 rounded-lg hover:bg-purple-100 hover:-translate-y-0.5 hover:scale-[1.05] transition-all duration-200 ease-out active:scale-95 active:shadow-[0_0_8px_rgba(139,92,246,0.3)]"
+                    className="p-1.5 rounded-lg hover:bg-violet-100 hover:-translate-y-0.5 hover:scale-[1.05] transition-all duration-200 ease-out active:scale-95 active:shadow-[0_0_8px_rgba(139,92,246,0.3)]"
                     title="Record a voice message"
                     aria-label="Start voice recording"
                   >
@@ -1088,7 +1088,7 @@ export default function Agents() {
 
                   <button
                     onClick={sendMessage}
-                    className="p-1.5 rounded-lg bg-purple-600 hover:bg-purple-700 hover:-translate-y-0.5 hover:scale-[1.05] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.45)] transition-all duration-200 ease-out active:scale-95 active:shadow-[0_0_8px_rgba(139,92,246,0.3)]"
+                    className="p-1.5 rounded-lg bg-gradient-to-br from-violet-600 to-violet-800 hover:from-violet-700 hover:to-violet-900 hover:-translate-y-0.5 hover:scale-[1.05] hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.45)] transition-all duration-200 ease-out active:scale-95 active:shadow-[0_0_8px_rgba(139,92,246,0.3)]"
                     title="Send message"
                   >
                     <Send className="w-4 h-4 text-white" />
@@ -1099,14 +1099,14 @@ export default function Agents() {
           </div>
 
           {/* Right: Scheduled Tasks (unchanged) */}
-          <div className="bg-white rounded-xl shadow-sm p-5 flex flex-col hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(147,51,234,0.25)] transition-all duration-200 ease-out">
+          <div className="bg-white rounded-xl shadow-sm p-5 flex flex-col justify-end hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(109,40,217,0.25)] transition-all duration-200 ease-out">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-sm font-bold text-gray-900">
                 Scheduled Tasks
               </h2>
               <button
                 onClick={() => setShowModal(true)}
-                className="flex items-center gap-1.5 bg-gradient-to-r from-purple-900 to-purple-600 text-white text-[10px] font-semibold px-3 py-1.5 rounded-lg hover:opacity-95 hover:-translate-y-0.5 hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.45)] transition-all duration-200 ease-out active:scale-95 active:shadow-[0_0_8px_rgba(139,92,246,0.3)]"
+                className="flex items-center gap-1.5 bg-gradient-to-r from-violet-900 to-violet-700 text-white text-[10px] font-semibold px-3 py-1.5 rounded-lg hover:opacity-95 hover:-translate-y-0.5 hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.45)] transition-all duration-200 ease-out active:scale-95 active:shadow-[0_0_8px_rgba(139,92,246,0.3)]"
               >
                 <Plus className="w-3 h-3" />
                 Create Task
@@ -1122,13 +1122,13 @@ export default function Agents() {
                 <div className="flex gap-1">
                   <button
                     onClick={prevMonth}
-                    className="p-0.5 rounded hover:bg-purple-100 hover:-translate-y-0.5 hover:scale-[1.1] transition-all duration-200 ease-out active:scale-90 active:shadow-[0_0_6px_rgba(139,92,246,0.3)]"
+                    className="p-0.5 rounded hover:bg-violet-100 hover:-translate-y-0.5 hover:scale-[1.1] transition-all duration-200 ease-out active:scale-90 active:shadow-[0_0_6px_rgba(139,92,246,0.3)]"
                   >
                     <ChevronLeft className="w-3 h-3 text-gray-400" />
                   </button>
                   <button
                     onClick={nextMonth}
-                    className="p-0.5 rounded hover:bg-purple-100 hover:-translate-y-0.5 hover:scale-[1.1] transition-all duration-200 ease-out active:scale-90 active:shadow-[0_0_6px_rgba(139,92,246,0.3)]"
+                    className="p-0.5 rounded hover:bg-violet-100 hover:-translate-y-0.5 hover:scale-[1.1] transition-all duration-200 ease-out active:scale-90 active:shadow-[0_0_6px_rgba(139,92,246,0.3)]"
                   >
                     <ChevronRight className="w-3 h-3 text-gray-400" />
                   </button>
@@ -1150,9 +1150,9 @@ export default function Agents() {
                     onClick={() => day && setSelectedDate(day)}
                     className={`text-[10px] py-1 rounded transition-all duration-150 ${
                       day && selectedDate === day
-                        ? "bg-purple-600 text-white font-bold shadow-[0_0_8px_rgba(139,92,246,0.3)]"
+                        ? "bg-gradient-to-br from-violet-600 to-violet-800 text-white font-bold shadow-[0_0_8px_rgba(139,92,246,0.3)]"
                         : day
-                        ? "text-gray-600 hover:bg-purple-50 hover:text-purple-700 hover:-translate-y-0.5 cursor-pointer active:scale-90 active:shadow-[0_0_6px_rgba(139,92,246,0.25)]"
+                        ? "text-gray-600 hover:bg-violet-50 hover:text-violet-800 hover:-translate-y-0.5 cursor-pointer active:scale-90 active:shadow-[0_0_6px_rgba(139,92,246,0.25)]"
                         : ""
                     }`}
                   >
@@ -1170,7 +1170,7 @@ export default function Agents() {
               {scheduled.length > 3 && (
                 <Link
                   to="/upcoming-today"
-                  className="text-xs text-purple-600 font-medium hover:underline"
+                  className="text-xs text-violet-700 font-medium hover:underline"
                   aria-label="View all upcoming tasks today"
                 >
                   View All
@@ -1180,7 +1180,7 @@ export default function Agents() {
             <div className="flex flex-col gap-2.5 flex-1">
               {tasksLoading ? (
                 <div className="flex items-center justify-center py-8">
-                  <div className="w-6 h-6 border-2 border-purple-600 border-t-transparent rounded-full animate-spin" />
+                  <div className="w-6 h-6 border-2 border-violet-700 border-t-transparent rounded-full animate-spin" />
                 </div>
               ) : tasksError ? (
                 <p className="text-xs text-gray-400 py-4 text-center">{tasksError}</p>
@@ -1208,7 +1208,7 @@ export default function Agents() {
                         {task.status === "completed" && (
                           <button
                             onClick={() => navigate(`/tasks/${task.id}`)}
-                            className="text-[10px] font-semibold text-purple-600 hover:text-purple-700 px-2.5 py-1 border border-purple-200 rounded-lg hover:bg-purple-50 hover:border-purple-300 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_6px_14px_-6px_rgba(147,51,234,0.35)] active:scale-95 transition-all duration-200 ease-out"
+                            className="text-[10px] font-semibold text-violet-700 hover:text-violet-800 px-2.5 py-1 border border-violet-200 rounded-lg hover:bg-violet-50 hover:border-violet-400 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_6px_14px_-6px_rgba(109,40,217,0.35)] active:scale-95 transition-all duration-200 ease-out"
                           >
                             View Result
                           </button>
@@ -1232,7 +1232,7 @@ export default function Agents() {
                 </h3>
                 <button
                   onClick={() => setShowModal(false)}
-                  className="p-1 rounded-lg hover:bg-purple-50 hover:-translate-y-0.5 hover:scale-[1.05] transition-all duration-200 ease-out"
+                  className="p-1 rounded-lg hover:bg-violet-50 hover:-translate-y-0.5 hover:scale-[1.05] transition-all duration-200 ease-out"
                 >
                   <X className="w-4 h-4 text-gray-400" />
                 </button>
@@ -1250,7 +1250,7 @@ export default function Agents() {
                       setNewTask({ ...newTask, name: e.target.value })
                     }
                     placeholder="e.g. Weekly Data Sync"
-                    className="w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-400"
+                    className="w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-violet-600/20 focus:border-violet-500"
                   />
                 </div>
 
@@ -1266,8 +1266,8 @@ export default function Agents() {
                         onClick={() => setNewTask({ ...newTask, scheduleType: s.value })}
                         className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 ease-out ${
                           newTask.scheduleType === s.value
-                            ? "bg-purple-600 text-white hover:-translate-y-0.5 hover:shadow-[0_6px_14px_-6px_rgba(147,51,234,0.4)] active:scale-95"
-                            : "bg-gray-100 text-gray-500 hover:bg-purple-100/70 hover:-translate-y-0.5 active:scale-95"
+                            ? "bg-gradient-to-br from-violet-600 to-violet-800 text-white hover:-translate-y-0.5 hover:shadow-[0_6px_14px_-6px_rgba(109,40,217,0.4)] active:scale-95"
+                            : "bg-gray-100 text-gray-500 hover:bg-violet-100/70 hover:-translate-y-0.5 active:scale-95"
                         }`}
                       >
                         {s.label}
@@ -1286,7 +1286,7 @@ export default function Agents() {
                     onChange={(e) =>
                       setNewTask({ ...newTask, nextRunAt: e.target.value })
                     }
-                    className="w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-400"
+                    className="w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-violet-600/20 focus:border-violet-500"
                   />
                 </div>
 
@@ -1303,8 +1303,8 @@ export default function Agents() {
                           onClick={() => setNewTask({ ...newTask, frequency: f.value })}
                           className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 ease-out ${
                             newTask.frequency === f.value
-                              ? "bg-purple-600 text-white hover:-translate-y-0.5 hover:shadow-[0_6px_14px_-6px_rgba(147,51,234,0.4)] active:scale-95"
-                              : "bg-gray-100 text-gray-500 hover:bg-purple-100/70 hover:-translate-y-0.5 active:scale-95"
+                              ? "bg-gradient-to-br from-violet-600 to-violet-800 text-white hover:-translate-y-0.5 hover:shadow-[0_6px_14px_-6px_rgba(109,40,217,0.4)] active:scale-95"
+                              : "bg-gray-100 text-gray-500 hover:bg-violet-100/70 hover:-translate-y-0.5 active:scale-95"
                           }`}
                         >
                           {f.label}
@@ -1347,7 +1347,7 @@ export default function Agents() {
 
                 <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-purple-900 to-purple-600 text-white text-sm font-semibold py-2.5 rounded-lg hover:opacity-95 hover:-translate-y-0.5 hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.45)] active:scale-[0.98] transition-all duration-200 ease-out mt-1"
+                  className="w-full bg-gradient-to-r from-violet-900 to-violet-700 text-white text-sm font-semibold py-2.5 rounded-lg hover:opacity-95 hover:-translate-y-0.5 hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.45)] active:scale-[0.98] transition-all duration-200 ease-out mt-1"
                 >
                   Create Task
                 </button>
