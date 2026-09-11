@@ -239,7 +239,7 @@ export default function Register() {
       <div className="w-full max-w-4xl mx-auto flex flex-col md:flex-row rounded-2xl shadow-xl overflow-hidden bg-white">
 
         {/* LEFT PANEL */}
-        <div className="w-full md:w-[45%] flex flex-col items-center justify-center text-center px-10 py-14 bg-gradient-to-br from-purple-100 via-purple-50 to-white">
+        <div className="w-full md:w-[45%] flex flex-col items-center justify-center text-center px-10 py-14 bg-gradient-to-br from-violet-100 via-violet-50 to-white">
           <img
             src={robotMascot}
             alt="AetherAI robot mascot"
@@ -247,7 +247,7 @@ export default function Register() {
           />
           <h1 className="text-2xl font-bold leading-snug text-gray-900">
             AetherAI: Your <br />
-            <span className="text-purple-600">Autonomous</span> <br />
+            <span className="text-violet-700">Autonomous</span> <br />
             Workforce
           </h1>
           <p className="text-gray-500 text-xs mt-4 max-w-[220px] leading-relaxed">
@@ -271,7 +271,7 @@ export default function Register() {
               <div
                 key={s}
                 className={`h-1.5 flex-1 rounded-full transition-colors ${
-                  s <= step ? "bg-purple-600" : "bg-gray-200"
+                  s <= step ? "bg-gradient-to-br from-violet-600 to-violet-800" : "bg-gray-200"
                 }`}
               />
             ))}
@@ -308,7 +308,7 @@ export default function Register() {
                 type="button"
                 onClick={handleSendOtp}
                 disabled={isSendingOtp || !email.trim()}
-                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-purple-900 to-purple-600 text-white text-sm font-semibold py-2.5 rounded-lg hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-violet-900 to-violet-700 text-white text-sm font-semibold py-2.5 rounded-lg hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSendingOtp ? (
                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -327,7 +327,7 @@ export default function Register() {
                 <button
                   type="button"
                   onClick={handleBackToEmail}
-                  className="text-purple-600 font-medium hover:text-purple-700 transition"
+                  className="text-violet-700 font-medium hover:text-violet-800 transition"
                 >
                   Change email
                 </button>
@@ -345,14 +345,14 @@ export default function Register() {
                     onChange={(e) => handleOtpChange(i, e.target.value)}
                     onKeyDown={(e) => handleOtpKeyDown(i, e)}
                     onPaste={i === 0 ? handleOtpPaste : undefined}
-                    className="w-9 h-10 text-center text-sm font-semibold border border-gray-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-400"
+                    className="w-9 h-10 text-center text-sm font-semibold border border-gray-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-violet-600/20 focus:border-violet-500"
                   />
                 ))}
                 <button
                   type="button"
                   onClick={handleVerifyOtp}
                   disabled={otpDigits.join("").length !== OTP_LENGTH || isSendingOtp}
-                  className="ml-2 px-3 py-2 text-xs font-semibold text-white bg-purple-600 rounded-lg hover:bg-purple-700 transition disabled:opacity-40 disabled:cursor-not-allowed"
+                  className="ml-2 px-3 py-2 text-xs font-semibold text-white bg-gradient-to-br from-violet-600 to-violet-800 rounded-lg hover:from-violet-700 hover:to-violet-900 transition disabled:opacity-40 disabled:cursor-not-allowed"
                 >
                   {isSendingOtp ? "Verifying..." : "Verify OTP"}
                 </button>
@@ -364,7 +364,7 @@ export default function Register() {
                 type="button"
                 onClick={handleResendOtp}
                 disabled={resendCooldown > 0 || isSendingOtp}
-                className="text-[11px] text-purple-600 font-medium hover:text-purple-700 disabled:opacity-40 disabled:cursor-not-allowed w-fit transition"
+                className="text-[11px] text-violet-700 font-medium hover:text-violet-800 disabled:opacity-40 disabled:cursor-not-allowed w-fit transition"
               >
                 {resendCooldown > 0 ? `Resend OTP in ${resendCooldown}s` : "Resend OTP"}
               </button>
@@ -381,7 +381,7 @@ export default function Register() {
                 <button
                   type="button"
                   onClick={handleBackToEmail}
-                  className="text-purple-600 font-medium hover:text-purple-700 transition"
+                  className="text-violet-700 font-medium hover:text-violet-800 transition"
                 >
                   Change email
                 </button>
@@ -455,7 +455,7 @@ export default function Register() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-purple-900 to-purple-600 text-white text-sm font-semibold py-2.5 rounded-lg hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-violet-900 to-violet-700 text-white text-sm font-semibold py-2.5 rounded-lg hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {submitting ? (
                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -477,7 +477,7 @@ export default function Register() {
 
           <p className="text-center text-xs text-gray-500 mt-5">
             Already have an account?{" "}
-            <Link to="/login" className="text-purple-600 font-medium">Login here</Link>
+            <Link to="/login" className="text-violet-700 font-medium">Login here</Link>
           </p>
         </div>
       </div>

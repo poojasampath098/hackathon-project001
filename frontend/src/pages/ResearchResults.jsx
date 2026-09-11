@@ -30,15 +30,15 @@ export default function ResearchResults() {
     <main className="w-full min-h-screen bg-transparent px-6 lg:px-8 py-6 flex flex-col gap-6">
       {/* Top Navbar */}
         <div className="flex items-center justify-end gap-4">
-          <button className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out">
+          <button className="p-2 rounded-lg border border-transparent hover:bg-violet-50/50 hover:border-violet-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.35)] transition-all duration-200 ease-out">
             <Search className="w-4 h-4 text-gray-500" />
           </button>
-          <button className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out relative">
+          <button className="p-2 rounded-lg border border-transparent hover:bg-violet-50/50 hover:border-violet-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.35)] transition-all duration-200 ease-out relative">
             <Bell className="w-4 h-4 text-gray-500" />
             <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full" />
           </button>
-          <button className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out">
-            <span className="flex w-8 h-8 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600 items-center justify-center">
+          <button className="p-2 rounded-lg border border-transparent hover:bg-violet-50/50 hover:border-violet-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.35)] transition-all duration-200 ease-out">
+            <span className="flex w-8 h-8 rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 items-center justify-center">
               <span className="text-white text-xs font-bold">A</span>
             </span>
           </button>
@@ -57,12 +57,12 @@ export default function ResearchResults() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Enter a research query..."
-            className="flex-1 bg-white rounded-xl shadow-sm border border-gray-200 px-4 py-2.5 text-sm text-gray-800 outline-none focus:border-purple-300 transition"
+            className="flex-1 bg-white rounded-xl shadow-sm border border-gray-200 px-4 py-2.5 text-sm text-gray-800 outline-none focus:border-violet-400 transition"
           />
           <button
             type="submit"
             disabled={loading || !query.trim()}
-            className="px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-purple-900 to-purple-600 hover:opacity-95 hover:-translate-y-0.5 hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.45)] active:scale-95 transition-all duration-200 ease-out disabled:opacity-50 flex items-center gap-2"
+            className="px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-violet-900 to-violet-700 hover:opacity-95 hover:-translate-y-0.5 hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.45)] active:scale-95 transition-all duration-200 ease-out disabled:opacity-50 flex items-center gap-2"
           >
             {loading ? (
               <Loader2 className="w-4 h-4 animate-spin" />
@@ -81,7 +81,7 @@ export default function ResearchResults() {
         )}
 
         {result !== null && !error && (
-          <div className="bg-white rounded-xl shadow-sm p-6 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(147,51,234,0.25)] transition-all duration-200 ease-out">
+          <div className="bg-white rounded-xl shadow-sm p-6 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(109,40,217,0.25)] transition-all duration-200 ease-out">
             <div className="flex items-center gap-2 mb-4">
               <Badge variant="purple">Query</Badge>
               <p className="text-sm font-semibold text-gray-900">{query}</p>

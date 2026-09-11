@@ -117,15 +117,15 @@ export default function Artifacts() {
     <main className="w-full min-h-screen bg-transparent px-6 lg:px-8 py-6 flex flex-col gap-6">
       {/* Top Navbar */}
         <div className="flex items-center justify-end gap-4">
-          <button className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out">
+          <button className="p-2 rounded-lg border border-transparent hover:bg-violet-50/50 hover:border-violet-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.35)] transition-all duration-200 ease-out">
             <Search className="w-4 h-4 text-gray-500" />
           </button>
-          <button className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out relative">
+          <button className="p-2 rounded-lg border border-transparent hover:bg-violet-50/50 hover:border-violet-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.35)] transition-all duration-200 ease-out relative">
             <Bell className="w-4 h-4 text-gray-500" />
             <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full" />
           </button>
-          <button className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out">
-            <span className="flex w-8 h-8 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600 items-center justify-center">
+          <button className="p-2 rounded-lg border border-transparent hover:bg-violet-50/50 hover:border-violet-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.35)] transition-all duration-200 ease-out">
+            <span className="flex w-8 h-8 rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 items-center justify-center">
               <span className="text-white text-xs font-bold">A</span>
             </span>
           </button>
@@ -148,7 +148,7 @@ export default function Artifacts() {
 
         {loading ? (
           <div className="flex items-center justify-center py-12">
-            <div className="w-8 h-8 border-2 border-purple-600 border-t-transparent rounded-full animate-spin" />
+            <div className="w-8 h-8 border-2 border-violet-700 border-t-transparent rounded-full animate-spin" />
           </div>
         ) : error ? (
           <div className="bg-white rounded-xl shadow-sm p-8 text-center">
@@ -166,16 +166,16 @@ export default function Artifacts() {
               return (
                 <div
                   key={id}
-                  className="bg-white rounded-xl shadow-sm p-4 flex items-center justify-between gap-4 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(147,51,234,0.25)] transition-all duration-200 ease-out"
+                  className="bg-white rounded-xl shadow-sm p-4 flex items-center justify-between gap-4 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(109,40,217,0.25)] transition-all duration-200 ease-out"
                 >
                   <div className="flex items-center gap-3 min-w-0">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600 flex items-center justify-center shrink-0">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center shrink-0">
                       <FileText className="w-4 h-4 text-white" />
                     </div>
                     <div className="min-w-0">
                       <button
                         onClick={() => navigate(`/artifacts/${id}`)}
-                        className="text-sm font-semibold text-gray-900 hover:text-purple-700 truncate max-w-[360px] block text-left"
+                        className="text-sm font-semibold text-gray-900 hover:text-violet-800 truncate max-w-[360px] block text-left"
                       >
                         {item.name || "Untitled"}
                       </button>
@@ -202,7 +202,7 @@ export default function Artifacts() {
                     {typeBadge(item.type)}
                     <button
                       onClick={() => handleDownload(id, item.name)}
-                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-purple-700 bg-purple-50 hover:bg-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_6px_14px_-6px_rgba(147,51,234,0.35)] active:scale-95 transition-all duration-200 ease-out"
+                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-violet-800 bg-violet-50 hover:bg-violet-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_6px_14px_-6px_rgba(109,40,217,0.35)] active:scale-95 transition-all duration-200 ease-out"
                     >
                       <Download className="w-3.5 h-3.5" />
                       Download

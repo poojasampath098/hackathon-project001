@@ -1,4 +1,3 @@
-const aiService = require("../services/ai.service");
 const logger = require("../core/logger");
 
 const SYSTEM_PROMPT = `You are the Aether Platform AI Agent — a single, unified AI assistant.
@@ -46,63 +45,136 @@ Respond with ONLY this JSON:
 function parseTaskFromMessage(message) {
   const lower = message.toLowerCase();
   const adj = "(?:\\w+\\s+)*";
+
   const createPatterns = [
-    new RegExp(`create\\s+(?:a\\s+|an\\s+)?(?:new\\s+)?${adj}task\\s+(?:called\\s+|named\\s+|titled\\s+)?["']?(.+?)["']?\\s+(?:with|and|priority|description|desc)\\s+`, "i"),
-    new RegExp(`create\\s+(?:a\\s+|an\\s+)?(?:new\\s+)?${adj}task\\s+(?:called\\s+|named\\s+|titled\\s+)?["']?([^"']+?)["']?\\s*$`, "i"),
-    new RegExp(`add\\s+(?:a\\s+|an\\s+)?(?:new\\s+)?${adj}task\\s+(?:called\\s+|named\\s+|titled\\s+)?["']?(.+?)["']?\\s+(?:with|and|priority|description|desc)\\s+`, "i"),
-    new RegExp(`add\\s+(?:a\\s+|an\\s+)?(?:new\\s+)?${adj}task\\s+(?:called\\s+|named\\s+|titled\\s+)?["']?([^"']+?)["']?\\s*$`, "i"),
-    new RegExp(`make\\s+(?:a\\s+|an\\s+)?(?:new\\s+)?${adj}task\\s+(?:called\\s+|named\\s+|titled\\s+)?["']?(.+?)["']?\\s+(?:with|and|priority|description|desc)\\s+`, "i"),
-    new RegExp(`make\\s+(?:a\\s+|an\\s+)?(?:new\\s+)?${adj}task\\s+(?:called\\s+|named\\s+|titled\\s+)?["']?([^"']+?)["']?\\s*$`, "i"),
+    new RegExp(
+      `create\\s+(?:a\\s+|an\\s+)?(?:new\\s+)?${adj}task\\s+(?:called\\s+|named\\s+|titled\\s+)?["']?(.+?)["']?\\s+(?:with|and|priority|description|desc)\\s+`,
+      "i"
+    ),
+    new RegExp(
+      `create\\s+(?:a\\s+|an\\s+)?(?:new\\s+)?${adj}task\\s+(?:called\\s+|named\\s+|titled\\s+)?["']?([^"']+?)["']?\\s*$`,
+      "i"
+    ),
+    new RegExp(
+      `add\\s+(?:a\\s+|an\\s+)?(?:new\\s+)?${adj}task\\s+(?:called\\s+|named\\s+|titled\\s+)?["']?(.+?)["']?\\s+(?:with|and|priority|description|desc)\\s+`,
+      "i"
+    ),
+    new RegExp(
+      `add\\s+(?:a\\s+|an\\s+)?(?:new\\s+)?${adj}task\\s+(?:called\\s+|named\\s+|titled\\s+)?["']?([^"']+?)["']?\\s*$`,
+      "i"
+    ),
+    new RegExp(
+      `make\\s+(?:a\\s+|an\\s+)?(?:new\\s+)?${adj}task\\s+(?:called\\s+|named\\s+|titled\\s+)?["']?(.+?)["']?\\s+(?:with|and|priority|description|desc)\\s+`,
+      "i"
+    ),
+    new RegExp(
+      `make\\s+(?:a\\s+|an\\s+)?(?:new\\s+)?${adj}task\\s+(?:called\\s+|named\\s+|titled\\s+)?["']?([^"']+?)["']?\\s*$`,
+      "i"
+    ),
     /new\s+task\s*:\s*["']?([^"']+?)["']?\s*$/i,
     /task\s*:\s*["']?([^"']+?)["']?\s*$/i,
   ];
 
   for (const pattern of createPatterns) {
     const match = message.match(pattern);
+
     if (match) {
       const title = match[1].trim().replace(/["']/g, "");
+
       let priority = "medium";
-      if (/\b(urgent|high|important|critical)\b/i.test(message)) priority = "high";
-      else if (/\b(low|minor|trivial)\b/i.test(message)) priority = "low";
+
+      if (/\b(urgent|high|important|critical)\b/i.test(message)) {
+        priority = "high";
+      } else if (/\b(low|minor|trivial)\b/i.test(message)) {
+        priority = "low";
+      }
 
       let description = "";
-      const descMatch = message.match(/(?:description|desc|details|about|notes?)\s*[:=]\s*["']?([^"']+?)["']?\s*$/i);
-      if (descMatch) description = descMatch[1].trim();
 
-      const requiresApproval = /\b(requires?\s+approval|needs?\s+approval|approval\s+required)\b/i.test(message);
+      const descMatch = message.match(
+        /(?:description|desc|details|about|notes?)\s*[:=]\s*["']?([^"']+?)["']?\s*$/i
+      );
 
-      return { action: "create", title, description, priority, requiresApproval };
+      if (descMatch) {
+        description = descMatch[1].trim();
+      }
+
+      const requiresApproval =
+        /\b(requires?\s+approval|needs?\s+approval|approval\s+required)\b/i.test(
+          message
+        );
+
+      return {
+        action: "create",
+        title,
+        description,
+        priority,
+        requiresApproval,
+      };
     }
   }
 
-  if (/\b(list|show|get|view|fetch|see)\b.*\btasks?\b/i.test(lower) ||
-      /\btasks?\b.*\b(list|show|get|view|fetch|see)\b/i.test(lower)) {
+  if (
+    /\b(list|show|get|view|fetch|see)\b.*\btasks?\b/i.test(lower) ||
+    /\btasks?\b.*\b(list|show|get|view|fetch|see)\b/i.test(lower)
+  ) {
     return { action: "list" };
   }
 
   return null;
 }
 
-async function detectIntent(message) {
-  const messages = [
-    { role: "system", content: INTENT_PROMPT },
-    { role: "user", content: message },
-  ];
+function detectIntent(message) {
+  const lower = message.toLowerCase().trim();
 
-  try {
-    const response = await aiService.chatCompletion(messages);
-    const jsonMatch = response.match(/\{[\s\S]*\}/);
-    if (jsonMatch) {
-      const parsed = JSON.parse(jsonMatch[0]);
-      if (["conversation", "research", "analysis", "task"].includes(parsed.intent)) {
-        return parsed;
-      }
-    }
-  } catch (err) {
-    logger.warn("Intent detection failed, defaulting to conversation", { error: err.message });
+  if (shouldBeResearch(lower)) {
+    return {
+      intent: "research",
+      taskAction: null,
+    };
   }
 
-  return { intent: "conversation", taskAction: null };
+  if (shouldBeAnalysis(lower)) {
+    return {
+      intent: "analysis",
+      taskAction: null,
+    };
+  }
+
+  return {
+    intent: "conversation",
+    taskAction: null,
+  };
 }
 
-module.exports = { SYSTEM_PROMPT, INTENT_PROMPT, parseTaskFromMessage, detectIntent };
+function shouldBeResearch(lower) {
+  return (
+    /\bresearch\b/i.test(lower) ||
+    /\blook\s+up\b/i.test(lower) ||
+    /\bsearch\s+(?:for|about|through)\b/i.test(lower) ||
+    /\bgather\s+information\b/i.test(lower) ||
+    /\bfind\s+out\b/i.test(lower) ||
+    /\bfind\s+(?:information|details?|facts?|resources?|out\s+about)\b/i.test(lower) ||
+    /\binvestigate\b/i.test(lower)
+  );
+}
+
+function shouldBeAnalysis(lower) {
+  return (
+    /\bcompare\b/i.test(lower) ||
+    /\bcomparison\b/i.test(lower) ||
+    /\banaly[sz]e\b/i.test(lower) ||
+    /\banalysis\b/i.test(lower) ||
+    /\bsummari[sz]e\b/i.test(lower) ||
+    /\binterpret\b/i.test(lower) ||
+    /\bevaluate\b/i.test(lower) ||
+    /\bpros\s+and\s+cons\b/i.test(lower)
+  );
+}
+
+module.exports = {
+  SYSTEM_PROMPT,
+  INTENT_PROMPT,
+  parseTaskFromMessage,
+  detectIntent,
+};

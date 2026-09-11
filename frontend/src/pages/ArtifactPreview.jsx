@@ -107,15 +107,15 @@ export default function ArtifactPreview() {
     <main className="w-full min-h-screen bg-transparent px-6 lg:px-8 py-6 flex flex-col gap-6">
       {/* Top Navbar */}
         <div className="flex items-center justify-end gap-4">
-          <button className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out">
+          <button className="p-2 rounded-lg border border-transparent hover:bg-violet-50/50 hover:border-violet-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.35)] transition-all duration-200 ease-out">
             <Search className="w-4 h-4 text-gray-500" />
           </button>
-          <button className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out relative">
+          <button className="p-2 rounded-lg border border-transparent hover:bg-violet-50/50 hover:border-violet-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.35)] transition-all duration-200 ease-out relative">
             <Bell className="w-4 h-4 text-gray-500" />
             <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full" />
           </button>
-          <button className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out">
-            <span className="flex w-8 h-8 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600 items-center justify-center">
+          <button className="p-2 rounded-lg border border-transparent hover:bg-violet-50/50 hover:border-violet-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.35)] transition-all duration-200 ease-out">
+            <span className="flex w-8 h-8 rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 items-center justify-center">
               <span className="text-white text-xs font-bold">A</span>
             </span>
           </button>
@@ -131,7 +131,7 @@ export default function ArtifactPreview() {
 
         {loading ? (
           <div className="flex items-center justify-center py-12">
-            <div className="w-8 h-8 border-2 border-purple-600 border-t-transparent rounded-full animate-spin" />
+            <div className="w-8 h-8 border-2 border-violet-700 border-t-transparent rounded-full animate-spin" />
           </div>
         ) : error ? (
           <div className="bg-white rounded-xl shadow-sm p-8 text-center">
@@ -145,7 +145,7 @@ export default function ArtifactPreview() {
           <>
             <div className="flex items-start justify-between gap-4">
               <div className="flex items-center gap-3 min-w-0">
-                <div className="w-11 h-11 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600 flex items-center justify-center shrink-0">
+                <div className="w-11 h-11 rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center shrink-0">
                   <FileText className="w-5 h-5 text-white" />
                 </div>
                 <div className="min-w-0">
@@ -160,7 +160,7 @@ export default function ArtifactPreview() {
               <div className="flex items-center gap-2 shrink-0">
                 <button
                   onClick={handleDownload}
-                  className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold text-purple-700 bg-purple-50 hover:bg-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_6px_14px_-6px_rgba(147,51,234,0.35)] active:scale-95 transition-all duration-200 ease-out"
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold text-violet-800 bg-violet-50 hover:bg-violet-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_6px_14px_-6px_rgba(109,40,217,0.35)] active:scale-95 transition-all duration-200 ease-out"
                 >
                   <Download className="w-3.5 h-3.5" />
                   Download
@@ -176,7 +176,7 @@ export default function ArtifactPreview() {
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              <div className="bg-white rounded-xl shadow-sm p-5 flex flex-col gap-4 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(147,51,234,0.25)] transition-all duration-200 ease-out">
+              <div className="bg-white rounded-xl shadow-sm p-5 flex flex-col gap-4 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(109,40,217,0.25)] transition-all duration-200 ease-out">
                 <h2 className="text-xs font-bold text-gray-500 uppercase tracking-wide">Details</h2>
                 <div className="flex flex-col gap-3 text-sm">
                   <div className="flex justify-between gap-4">
@@ -202,7 +202,7 @@ export default function ArtifactPreview() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-xl shadow-sm p-5 flex flex-col hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(147,51,234,0.25)] transition-all duration-200 ease-out">
+              <div className="bg-white rounded-xl shadow-sm p-5 flex flex-col hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(109,40,217,0.25)] transition-all duration-200 ease-out">
                 <h2 className="text-xs font-bold text-gray-500 uppercase tracking-wide mb-3">Metadata</h2>
                 <pre className="text-xs text-gray-600 bg-gray-50 rounded-lg p-3 overflow-auto flex-1">
                   {item.metadata && Object.keys(item.metadata).length > 0
@@ -212,7 +212,7 @@ export default function ArtifactPreview() {
               </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-sm p-5 flex flex-col hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(147,51,234,0.25)] transition-all duration-200 ease-out">
+            <div className="bg-white rounded-xl shadow-sm p-5 flex flex-col hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(109,40,217,0.25)] transition-all duration-200 ease-out">
               <h2 className="text-xs font-bold text-gray-500 uppercase tracking-wide mb-3">Content</h2>
               <pre className="text-xs text-gray-600 bg-gray-50 rounded-lg p-3 overflow-auto max-h-[420px]">
                 {item.content !== undefined && item.content !== null

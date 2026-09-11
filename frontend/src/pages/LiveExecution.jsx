@@ -177,13 +177,13 @@ export default function LiveExecution() {
                 placeholder="Search tasks..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-9 pr-4 py-2 text-xs border border-gray-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-400 w-56"
+                className="pl-9 pr-4 py-2 text-xs border border-gray-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-violet-600/20 focus:border-violet-500 w-56"
               />
             </div>
             <div className="relative">
               <button
                 onClick={() => setFilterOpen((p) => !p)}
-                className="p-2 rounded-lg border border-gray-200 bg-white hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out"
+                className="p-2 rounded-lg border border-gray-200 bg-white hover:bg-violet-50/50 hover:border-violet-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.35)] transition-all duration-200 ease-out"
               >
                 <Filter className="w-4 h-4 text-gray-500" />
               </button>
@@ -196,7 +196,7 @@ export default function LiveExecution() {
                       <select
                         value={filterAgent}
                         onChange={(e) => setFilterAgent(e.target.value)}
-                        className="w-full text-xs px-3 py-2 border border-gray-200 rounded-lg appearance-none bg-white focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-400"
+                        className="w-full text-xs px-3 py-2 border border-gray-200 rounded-lg appearance-none bg-white focus:outline-none focus:ring-2 focus:ring-violet-600/20 focus:border-violet-500"
                       >
                         {agentOptions.map((a) => (
                           <option key={a} value={a}>{a}</option>
@@ -207,7 +207,7 @@ export default function LiveExecution() {
                   </div>
                   <button
                     onClick={() => { setFilterAgent("All"); setFilterOpen(false); }}
-                    className="text-[10px] text-purple-600 font-medium hover:text-purple-700"
+                    className="text-[10px] text-violet-700 font-medium hover:text-violet-800"
                   >
                     Clear filters
                   </button>
@@ -225,8 +225,8 @@ export default function LiveExecution() {
               onClick={() => setActiveFilter(f)}
               className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 ease-out ${
                 activeFilter === f
-                  ? "bg-purple-600 text-white hover:-translate-y-0.5 hover:shadow-[0_6px_14px_-6px_rgba(147,51,234,0.4)] active:scale-95"
-                  : "bg-white text-gray-500 border border-gray-200 hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_6px_14px_-6px_rgba(147,51,234,0.3)] active:scale-95"
+                  ? "bg-gradient-to-br from-violet-600 to-violet-800 text-white hover:-translate-y-0.5 hover:shadow-[0_6px_14px_-6px_rgba(109,40,217,0.4)] active:scale-95"
+                  : "bg-white text-gray-500 border border-gray-200 hover:bg-violet-50/50 hover:border-violet-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_6px_14px_-6px_rgba(109,40,217,0.3)] active:scale-95"
               }`}
             >
               {f}
@@ -236,12 +236,12 @@ export default function LiveExecution() {
 
         <div className="grid grid-cols-3 gap-4 flex-1">
           {/* Recent Tasks Table */}
-          <div className="col-span-2 bg-white rounded-xl shadow-sm p-5 flex flex-col hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(147,51,234,0.25)] transition-all duration-200 ease-out">
+          <div className="col-span-2 bg-white rounded-xl shadow-sm p-5 flex flex-col hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(109,40,217,0.25)] transition-all duration-200 ease-out">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-sm font-bold text-gray-900">Recent Tasks</h2>
               <button
                 onClick={() => setShowAll((p) => !p)}
-                className="text-xs text-purple-600 font-medium hover:underline"
+                className="text-xs text-violet-700 font-medium hover:underline"
               >
                 {showAll ? "Show Less" : "View All"}
               </button>
@@ -249,7 +249,7 @@ export default function LiveExecution() {
 
             {loading ? (
               <div className="flex items-center justify-center py-12">
-                <div className="w-8 h-8 border-2 border-purple-600 border-t-transparent rounded-full animate-spin" />
+                <div className="w-8 h-8 border-2 border-violet-700 border-t-transparent rounded-full animate-spin" />
               </div>
             ) : (
               <div className="overflow-x-auto flex-1">
@@ -312,7 +312,7 @@ export default function LiveExecution() {
           </div>
 
           {/* Live Log Stream */}
-          <div className="bg-gray-900 rounded-xl shadow-sm p-4 flex flex-col hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(147,51,234,0.25)] transition-all duration-200 ease-out">
+          <div className="bg-gray-900 rounded-xl shadow-sm p-4 flex flex-col hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(109,40,217,0.25)] transition-all duration-200 ease-out">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-sm font-bold text-white">Live Log Stream</h2>
               <div className="flex items-center gap-2">

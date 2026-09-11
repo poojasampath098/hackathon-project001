@@ -115,9 +115,9 @@ export default function CreateTask() {
                 <div
                   className={`w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-bold shrink-0 transition ${
                     isDone
-                      ? "bg-purple-600 text-white"
+                      ? "bg-gradient-to-br from-violet-600 to-violet-800 text-white"
                       : isActive
-                        ? "bg-purple-600 text-white"
+                        ? "bg-gradient-to-br from-violet-600 to-violet-800 text-white"
                         : "bg-gray-100 text-gray-400 border border-gray-200"
                   }`}
                 >
@@ -138,7 +138,7 @@ export default function CreateTask() {
               {i < steps.length - 1 && (
                 <div
                   className={`h-[2px] w-10 mx-2 rounded-full transition ${
-                    num < step ? "bg-purple-600" : "bg-gray-200"
+                    num < step ? "bg-gradient-to-br from-violet-600 to-violet-800" : "bg-gray-200"
                   }`}
                 />
               )}
@@ -148,7 +148,7 @@ export default function CreateTask() {
       </div>
 
       {/* Step content */}
-      <div className="bg-white rounded-xl shadow-sm p-6 max-w-2xl hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(147,51,234,0.25)] transition-all duration-200 ease-out">
+      <div className="bg-white rounded-xl shadow-sm p-6 max-w-2xl hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(109,40,217,0.25)] transition-all duration-200 ease-out">
         {step === 1 && (
           <div className="flex flex-col gap-4">
             <div>
@@ -160,7 +160,7 @@ export default function CreateTask() {
                 value={taskName}
                 onChange={(e) => setTaskName(e.target.value)}
                 placeholder="e.g., Data Extraction Routine"
-                className="w-full text-sm px-3 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-400 placeholder:text-gray-400"
+                className="w-full text-sm px-3 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-600/20 focus:border-violet-500 placeholder:text-gray-400"
               />
             </div>
 
@@ -173,7 +173,7 @@ export default function CreateTask() {
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Describe what the agent needs to accomplish..."
                 rows={4}
-                className="w-full text-sm px-3 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-400 placeholder:text-gray-400 resize-none"
+                className="w-full text-sm px-3 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-600/20 focus:border-violet-500 placeholder:text-gray-400 resize-none"
               />
             </div>
 
@@ -188,8 +188,8 @@ export default function CreateTask() {
                     onClick={() => setPriority(p)}
                     className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 ease-out ${
                       priority === p
-                        ? "bg-purple-600 text-white hover:-translate-y-0.5 hover:shadow-[0_6px_14px_-6px_rgba(147,51,234,0.4)] active:scale-95"
-                        : "bg-gray-100 text-gray-500 hover:bg-purple-100/70 hover:-translate-y-0.5 active:scale-95"
+                        ? "bg-gradient-to-br from-violet-600 to-violet-800 text-white hover:-translate-y-0.5 hover:shadow-[0_6px_14px_-6px_rgba(109,40,217,0.4)] active:scale-95"
+                        : "bg-gray-100 text-gray-500 hover:bg-violet-100/70 hover:-translate-y-0.5 active:scale-95"
                     }`}
                   >
                     {p}
@@ -208,7 +208,7 @@ export default function CreateTask() {
               <button
                 onClick={nextStep}
                 disabled={!taskName.trim()}
-                className="bg-gradient-to-r from-purple-900 to-purple-600 text-white text-xs font-semibold px-5 py-2.5 rounded-lg hover:opacity-95 hover:-translate-y-0.5 hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.45)] active:scale-95 transition-all duration-200 ease-out disabled:opacity-40 disabled:cursor-not-allowed"
+                className="bg-gradient-to-r from-violet-900 to-violet-700 text-white text-xs font-semibold px-5 py-2.5 rounded-lg hover:opacity-95 hover:-translate-y-0.5 hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.45)] active:scale-95 transition-all duration-200 ease-out disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 Next Step
               </button>
@@ -229,8 +229,8 @@ export default function CreateTask() {
                     onClick={() => setScheduleType(s.value)}
                     className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 ease-out ${
                       scheduleType === s.value
-                        ? "bg-purple-600 text-white hover:-translate-y-0.5 hover:shadow-[0_6px_14px_-6px_rgba(147,51,234,0.4)] active:scale-95"
-                        : "bg-gray-100 text-gray-500 hover:bg-purple-100/70 hover:-translate-y-0.5 active:scale-95"
+                        ? "bg-gradient-to-br from-violet-600 to-violet-800 text-white hover:-translate-y-0.5 hover:shadow-[0_6px_14px_-6px_rgba(109,40,217,0.4)] active:scale-95"
+                        : "bg-gray-100 text-gray-500 hover:bg-violet-100/70 hover:-translate-y-0.5 active:scale-95"
                     }`}
                   >
                     {s.label}
@@ -247,7 +247,7 @@ export default function CreateTask() {
                 type="datetime-local"
                 value={nextRunAt}
                 onChange={(e) => setNextRunAt(e.target.value)}
-                className="w-full text-sm px-3 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-400"
+                className="w-full text-sm px-3 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-600/20 focus:border-violet-500"
               />
             </div>
 
@@ -263,8 +263,8 @@ export default function CreateTask() {
                       onClick={() => setFrequency(f.value)}
                       className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 ease-out ${
                         frequency === f.value
-                          ? "bg-purple-600 text-white hover:-translate-y-0.5 hover:shadow-[0_6px_14px_-6px_rgba(147,51,234,0.4)] active:scale-95"
-                          : "bg-gray-100 text-gray-500 hover:bg-purple-100/70 hover:-translate-y-0.5 active:scale-95"
+                          ? "bg-gradient-to-br from-violet-600 to-violet-800 text-white hover:-translate-y-0.5 hover:shadow-[0_6px_14px_-6px_rgba(109,40,217,0.4)] active:scale-95"
+                          : "bg-gray-100 text-gray-500 hover:bg-violet-100/70 hover:-translate-y-0.5 active:scale-95"
                       }`}
                     >
                       {f.label}
@@ -313,7 +313,7 @@ export default function CreateTask() {
               <button
                 onClick={nextStep}
                 disabled={!nextRunAt || Number.isNaN(new Date(nextRunAt).getTime())}
-                className="bg-gradient-to-r from-purple-900 to-purple-600 text-white text-xs font-semibold px-5 py-2.5 rounded-lg hover:opacity-95 hover:-translate-y-0.5 hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.45)] active:scale-95 transition-all duration-200 ease-out disabled:opacity-40 disabled:cursor-not-allowed"
+                className="bg-gradient-to-r from-violet-900 to-violet-700 text-white text-xs font-semibold px-5 py-2.5 rounded-lg hover:opacity-95 hover:-translate-y-0.5 hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.45)] active:scale-95 transition-all duration-200 ease-out disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 Next Step
               </button>
@@ -370,7 +370,7 @@ export default function CreateTask() {
               </button>
               <button
                 onClick={handleCreate}
-                className="bg-gradient-to-r from-purple-900 to-purple-600 text-white text-xs font-semibold px-5 py-2.5 rounded-lg hover:opacity-95 hover:-translate-y-0.5 hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.45)] active:scale-95 transition-all duration-200 ease-out"
+                className="bg-gradient-to-r from-violet-900 to-violet-700 text-white text-xs font-semibold px-5 py-2.5 rounded-lg hover:opacity-95 hover:-translate-y-0.5 hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.45)] active:scale-95 transition-all duration-200 ease-out"
               >
                 Create Task
               </button>

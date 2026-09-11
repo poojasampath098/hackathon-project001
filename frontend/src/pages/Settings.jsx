@@ -98,7 +98,7 @@ export default function Settings() {
         {/* Right content */}
         <div className="flex flex-col gap-6">
             {/* Profile Information Card */}
-            <div className="bg-white rounded-xl shadow-sm p-6 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(147,51,234,0.25)] transition-all duration-200 ease-out">
+            <div className="bg-white rounded-xl shadow-sm p-6 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(109,40,217,0.25)] transition-all duration-200 ease-out">
               <h2 className="text-sm font-bold text-gray-900 mb-5">
                 Profile Information
               </h2>
@@ -108,7 +108,7 @@ export default function Settings() {
                 {avatar ? (
                   <img src={avatar} alt="avatar" className="w-16 h-16 rounded-full object-cover" />
                 ) : (
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600 flex items-center justify-center">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center">
                     <span className="text-white text-xl font-bold">{initialsText}</span>
                   </div>
                 )}
@@ -122,7 +122,7 @@ export default function Settings() {
                   />
                   <button
                     onClick={() => fileInputRef.current?.click()}
-                    className="text-xs font-semibold text-purple-600 hover:text-purple-700 px-3 py-1.5 border border-purple-200 rounded-lg hover:bg-purple-50 hover:border-purple-300 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_6px_14px_-6px_rgba(147,51,234,0.35)] active:scale-95 transition-all duration-200 ease-out"
+                    className="text-xs font-semibold text-violet-700 hover:text-violet-800 px-3 py-1.5 border border-violet-200 rounded-lg hover:bg-violet-50 hover:border-violet-400 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_6px_14px_-6px_rgba(109,40,217,0.35)] active:scale-95 transition-all duration-200 ease-out"
                   >
                     Change Photo
                   </button>
@@ -142,7 +142,7 @@ export default function Settings() {
                     type="text"
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
-                    className="w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-400"
+                    className="w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-violet-600/20 focus:border-violet-500"
                   />
                 </div>
                 <div>
@@ -153,7 +153,7 @@ export default function Settings() {
                     type="text"
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
-                    className="w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-400"
+                    className="w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-violet-600/20 focus:border-violet-500"
                   />
                 </div>
               </div>
@@ -174,7 +174,7 @@ export default function Settings() {
                 <label className="text-xs font-semibold text-gray-700">
                   Role
                 </label>
-                <span className="text-[10px] font-semibold bg-purple-100 text-purple-700 px-2.5 py-0.5 rounded-full">
+                <span className="text-[10px] font-semibold bg-violet-100 text-violet-800 px-2.5 py-0.5 rounded-full">
                   {role}
                 </span>
               </div>
@@ -183,7 +183,7 @@ export default function Settings() {
                 <button
                   onClick={handleSave}
                   disabled={saving}
-                  className="bg-gradient-to-r from-purple-900 to-purple-600 text-white text-xs font-semibold px-5 py-2.5 rounded-lg hover:opacity-95 hover:-translate-y-0.5 hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.45)] active:scale-95 transition-all duration-200 ease-out disabled:opacity-60"
+                  className="bg-gradient-to-r from-violet-900 to-violet-700 text-white text-xs font-semibold px-5 py-2.5 rounded-lg hover:opacity-95 hover:-translate-y-0.5 hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.45)] active:scale-95 transition-all duration-200 ease-out disabled:opacity-60"
                 >
                   {saving ? "Saving..." : "Save Changes"}
                 </button>
@@ -191,7 +191,7 @@ export default function Settings() {
             </div>
 
             {/* Notification Preferences Card */}
-            <div className="bg-white rounded-xl shadow-sm p-6 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(147,51,234,0.25)] transition-all duration-200 ease-out">
+            <div className="bg-white rounded-xl shadow-sm p-6 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(109,40,217,0.25)] transition-all duration-200 ease-out">
               <h2 className="text-sm font-bold text-gray-900 mb-5">
                 Notification Preferences
               </h2>

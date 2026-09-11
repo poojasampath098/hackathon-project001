@@ -1,7 +1,7 @@
 import { useState, useContext, useCallback } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Mail, Lock, ArrowRight, LayoutDashboard, Eye, EyeOff } from "lucide-react";
-import robotMascot from "../assets/robot-mascot.png";
+import loginVideo from "../assets/login-video.mp4.webm";
 import { AuthContext } from "../context/AuthContext";
 import GoogleSignInButton from "../components/auth/GoogleSignInButton";
 
@@ -68,15 +68,22 @@ export default function Login() {
       <div className="w-full max-w-4xl mx-auto flex flex-col md:flex-row rounded-2xl shadow-xl overflow-hidden bg-white">
         
         {/* LEFT PANEL */}
-        <div className="w-full md:w-[45%] flex flex-col items-center justify-center text-center px-10 py-14 bg-gradient-to-br from-purple-100 via-purple-50 to-white">
-          <img
-            src={robotMascot}
-            alt="AetherAI robot mascot"
-            className="mb-8 w-[240px] h-auto object-contain"
+        <div className="w-full md:w-[45%] flex flex-col items-center justify-center text-center px-10 py-14 bg-gradient-to-br from-violet-100 via-violet-50 to-white">
+          {/* Looped video in robot's spot, dark bg hidden via screen blend (decorative only) */}
+          <video
+            className="mb-8 w-[300px] h-[300px] rounded-full object-cover pointer-events-none select-none"
+            src={loginVideo}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            aria-hidden="true"
+            tabIndex={-1}
           />
           <h1 className="text-2xl font-bold leading-snug text-gray-900">
             AetherAI: Your <br />
-            <span className="text-purple-600">Autonomous</span> <br />
+            <span className="text-violet-700">Autonomous</span> <br />
             Workforce
           </h1>
           <p className="text-gray-500 text-xs mt-4 max-w-[220px] leading-relaxed">
@@ -121,7 +128,7 @@ export default function Login() {
                 <label className="text-xs font-semibold text-gray-800">
                   Password
                 </label>
-                <a href="#" className="text-xs text-purple-600 font-medium">
+                <a href="#" className="text-xs text-violet-700 font-medium">
                   Forgot Password?
                 </a>
               </div>
@@ -148,7 +155,7 @@ export default function Login() {
             <button
               type="submit"
               disabled={submitting}
-              className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-purple-900 to-purple-600 text-white text-sm font-semibold py-2.5 rounded-lg hover:opacity-90 transition disabled:opacity-50"
+              className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-violet-900 to-violet-700 text-white text-sm font-semibold py-2.5 rounded-lg hover:opacity-90 transition disabled:opacity-50"
             >
               {submitting ? (
                 <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -168,7 +175,7 @@ export default function Login() {
 
           <p className="text-center text-xs text-gray-500 mt-5">
             Don't have an account?{" "}
-            <Link to="/register" className="text-purple-600 font-medium">Register here</Link>
+            <Link to="/register" className="text-violet-700 font-medium">Register here</Link>
           </p>
         </div>
       </div>

@@ -11,9 +11,15 @@ function getClient() {
     client = new OpenAI({
       apiKey: config.nvidiaApiKey,
       baseURL: config.nvidiaBaseUrl,
+      timeout: config.aiTimeoutMs,
+      maxRetries: 0,
     });
   }
   return client;
 }
 
-module.exports = { getClient };
+function resetClient() {
+  client = null;
+}
+
+module.exports = { getClient, resetClient };

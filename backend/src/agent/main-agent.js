@@ -78,6 +78,11 @@ async function handleConversation(message, artifactContext) {
 
 async function handleResearch(message, artifactContext) {
   const researchResult = await searchTool.research(message);
+
+  if (!artifactContext) {
+    return researchResult;
+  }
+
   const baseText = `The user asked: "${message}"\n\nHere is the research information:\n\n${researchResult}\n\nProvide a clear, well-structured response to the user based on this information.`;
   const messages = [
     { role: "system", content: SYSTEM_PROMPT },
@@ -112,7 +117,7 @@ async function processMessage(userId, message, artifactContext) {
       return await executeTask(userId, taskParsed);
     }
 
-    const intentResult = await detectIntent(message);
+    const intentResult = detectIntent(message);
     const intent = intentResult.intent;
 
     logger.info("AI intent detected", {
@@ -134,15 +139,10 @@ async function processMessage(userId, message, artifactContext) {
   } catch (err) {
     logger.error("Agent processing failed", err);
 
-    if (err.message && err.message.includes("API key")) {
-      throw new Error("AI service configuration error");
+    if (err.aiErrorCategory) {
+      throw err;
     }
-    if (err.message && err.message.includes("Empty response")) {
-      throw new Error("AI service returned an empty response. Please try again.");
-    }
-    if (err.code === "ECONNABORTED" || (err.message && err.message.includes("timeout"))) {
-      throw new Error("AI service request timed out. Please try again.");
-    }
+
     if (err.message && err.message.includes("currently unavailable")) {
       throw err;
     }

@@ -52,7 +52,7 @@ export default function UpcomingToday() {
 
       {loading ? (
         <div className="flex items-center justify-center py-12">
-          <div className="w-8 h-8 border-2 border-purple-600 border-t-transparent rounded-full animate-spin" />
+          <div className="w-8 h-8 border-2 border-violet-700 border-t-transparent rounded-full animate-spin" />
         </div>
       ) : error ? (
         <div className="bg-white rounded-xl shadow-sm p-8 text-center">
@@ -67,7 +67,7 @@ export default function UpcomingToday() {
           {tasks.map((task) => (
             <div
               key={task.id}
-              className="bg-white rounded-xl shadow-sm p-4 flex items-center justify-between hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(147,51,234,0.25)] transition-all duration-200 ease-out"
+              className="bg-white rounded-xl shadow-sm p-4 flex items-center justify-between hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(109,40,217,0.25)] transition-all duration-200 ease-out"
             >
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-semibold text-gray-900 truncate">
@@ -84,7 +84,7 @@ export default function UpcomingToday() {
                 {task.status === "completed" && (
                   <button
                     onClick={() => navigate(`/tasks/${task.id}`)}
-                    className="text-[10px] font-semibold text-purple-600 hover:text-purple-700 px-2.5 py-1 border border-purple-200 rounded-lg hover:bg-purple-50 hover:border-purple-300 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_6px_14px_-6px_rgba(147,51,234,0.35)] active:scale-95 transition-all duration-200 ease-out"
+                    className="text-[10px] font-semibold text-violet-700 hover:text-violet-800 px-2.5 py-1 border border-violet-200 rounded-lg hover:bg-violet-50 hover:border-violet-400 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_6px_14px_-6px_rgba(109,40,217,0.35)] active:scale-95 transition-all duration-200 ease-out"
                   >
                     View Result
                   </button>

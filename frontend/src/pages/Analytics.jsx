@@ -175,15 +175,15 @@ export default function Analytics() {
     <div className="p-6 flex flex-col gap-6">
       {/* Top Navbar */}
       <div className="flex items-center justify-end gap-4">
-        <button className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out">
+        <button className="p-2 rounded-lg border border-transparent hover:bg-violet-50/50 hover:border-violet-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.35)] transition-all duration-200 ease-out">
           <Search className="w-4 h-4 text-gray-500" />
         </button>
-        <button className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out relative">
+        <button className="p-2 rounded-lg border border-transparent hover:bg-violet-50/50 hover:border-violet-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.35)] transition-all duration-200 ease-out relative">
           <Bell className="w-4 h-4 text-gray-500" />
           <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full" />
         </button>
-        <button className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out">
-          <span className="flex w-8 h-8 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600 items-center justify-center">
+        <button className="p-2 rounded-lg border border-transparent hover:bg-violet-50/50 hover:border-violet-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.35)] transition-all duration-200 ease-out">
+          <span className="flex w-8 h-8 rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 items-center justify-center">
             <span className="text-white text-xs font-bold">A</span>
           </span>
         </button>
@@ -198,7 +198,7 @@ export default function Analytics() {
 
       {loading ? (
         <div className="flex items-center justify-center py-16">
-          <div className="w-8 h-8 border-2 border-purple-600 border-t-transparent rounded-full animate-spin" />
+          <div className="w-8 h-8 border-2 border-violet-700 border-t-transparent rounded-full animate-spin" />
         </div>
       ) : error ? (
         <div className="bg-red-50 border border-red-200 rounded-2xl p-8 text-center">
@@ -211,7 +211,7 @@ export default function Analytics() {
             {statCards.map((stat) => (
               <div
                 key={stat.label}
-                className="bg-white rounded-2xl shadow-sm p-5 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(147,51,234,0.25)] transition-all duration-200 ease-out"
+                className="bg-white rounded-2xl shadow-sm p-5 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(109,40,217,0.25)] transition-all duration-200 ease-out"
               >
                 <span className="text-xs text-gray-500 font-medium">
                   {stat.label}
@@ -223,13 +223,13 @@ export default function Analytics() {
 
           {/* Task + Execution Status */}
           <div className="grid grid-cols-2 gap-4">
-            <div className="bg-white rounded-2xl shadow-sm p-5 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(147,51,234,0.25)] transition-all duration-200 ease-out">
+            <div className="bg-white rounded-2xl shadow-sm p-5 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(109,40,217,0.25)] transition-all duration-200 ease-out">
               <div className="mb-4">
                 <h2 className="text-sm font-bold text-gray-900">Task Status</h2>
               </div>
               {renderPie(taskStatusData, 220)}
             </div>
-            <div className="bg-white rounded-2xl shadow-sm p-5 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(147,51,234,0.25)] transition-all duration-200 ease-out">
+            <div className="bg-white rounded-2xl shadow-sm p-5 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(109,40,217,0.25)] transition-all duration-200 ease-out">
               <div className="mb-4">
                 <h2 className="text-sm font-bold text-gray-900">Task Priority</h2>
               </div>
@@ -238,13 +238,13 @@ export default function Analytics() {
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <div className="bg-white rounded-2xl shadow-sm p-5 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(147,51,234,0.25)] transition-all duration-200 ease-out">
+            <div className="bg-white rounded-2xl shadow-sm p-5 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(109,40,217,0.25)] transition-all duration-200 ease-out">
               <div className="mb-4">
                 <h2 className="text-sm font-bold text-gray-900">Execution Status</h2>
               </div>
               {renderBar(executionStatusData, 220)}
             </div>
-            <div className="bg-white rounded-2xl shadow-sm p-5 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(147,51,234,0.25)] transition-all duration-200 ease-out">
+            <div className="bg-white rounded-2xl shadow-sm p-5 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(109,40,217,0.25)] transition-all duration-200 ease-out">
               <div className="mb-4">
                 <h2 className="text-sm font-bold text-gray-900">Approvals</h2>
               </div>
@@ -253,7 +253,7 @@ export default function Analytics() {
           </div>
 
           {/* Activity by Type */}
-          <div className="bg-white rounded-2xl shadow-sm p-5 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(147,51,234,0.25)] transition-all duration-200 ease-out">
+          <div className="bg-white rounded-2xl shadow-sm p-5 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(109,40,217,0.25)] transition-all duration-200 ease-out">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-sm font-bold text-gray-900">Activity by Type</h2>
               <Badge variant="gray">{activityStats.total ?? 0} total</Badge>
@@ -267,10 +267,10 @@ export default function Analytics() {
                 {activityTypeData.map((entry) => (
                   <div
                     key={entry.name}
-                    className="flex items-center gap-2 bg-purple-50 rounded-full px-3 py-1.5"
+                    className="flex items-center gap-2 bg-violet-50 rounded-full px-3 py-1.5"
                   >
                     <span className="text-xs text-gray-700">{entry.name}</span>
-                    <span className="text-xs font-bold text-purple-700">{entry.value}</span>
+                    <span className="text-xs font-bold text-violet-800">{entry.value}</span>
                   </div>
                 ))}
               </div>

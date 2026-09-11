@@ -8,6 +8,11 @@ import {
   ClipboardCheck,
   Users,
   CirclePlay,
+  Plus,
+  ArrowRight,
+  ShieldCheck,
+  Zap,
+  Target,
 } from "lucide-react";
 import {
   AreaChart,
@@ -23,6 +28,8 @@ import {
   Pie,
   Cell,
 } from "recharts";
+import robotMascot from "../assets/robot-mascot.png";
+import heroVideo from "../assets/hero-video.mp4.mp4";
 import TopBar from "../components/layout/TopBar";
 import TrendIndicator from "../components/ui/TrendIndicator";
 import { dashboardApi } from "../services/dashboard.api";
@@ -31,16 +38,13 @@ import { AuthContext } from "../context/AuthContext";
 const DONUT_COLORS = ["#7c3aed", "#d1d5db"];
 
 const AMBIENT_BG = [
-  `url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'520'%20height%3D'520'%20viewBox%3D'0%200%20520%20520'%3E%0A%3Cg%20stroke%3D'%238b5cf6'%20stroke-width%3D'0.8'%20stroke-opacity%3D'0.18'%20fill%3D'none'%3E%0A%3Cpath%20d%3D'M80%20120%20L200%2095%20L300%20150%20L235%20252%20L390%20305%20L305%20418'%2F%3E%0A%3Cpath%20d%3D'M120%20180%20L235%20252%20L150%20330'%2F%3E%0A%3C%2Fg%3E%0A%3Cg%20fill%3D'%238b5cf6'%20fill-opacity%3D'0.35'%3E%0A%3Ccircle%20cx%3D'80'%20cy%3D'120'%20r%3D'2.4'%2F%3E%3Ccircle%20cx%3D'200'%20cy%3D'95'%20r%3D'2.4'%2F%3E%3Ccircle%20cx%3D'300'%20cy%3D'150'%20r%3D'2.4'%2F%3E%0A%3Ccircle%20cx%3D'235'%20cy%3D'252'%20r%3D'3'%2F%3E%3Ccircle%20cx%3D'390'%20cy%3D'305'%20r%3D'2.4'%2F%3E%3Ccircle%20cx%3D'305'%20cy%3D'418'%20r%3D'2.4'%2F%3E%0A%3Ccircle%20cx%3D'120'%20cy%3D'180'%20r%3D'2'%2F%3E%3Ccircle%20cx%3D'150'%20cy%3D'330'%20r%3D'2.2'%2F%3E%0A%3C%2Fg%3E%0A%3Cg%20fill%3D'%238b5cf6'%20fill-opacity%3D'0.28'%3E%0A%3Ccircle%20cx%3D'420'%20cy%3D'120'%20r%3D'1.4'%2F%3E%3Ccircle%20cx%3D'452'%20cy%3D'262'%20r%3D'1.4'%2F%3E%3Ccircle%20cx%3D'92'%20cy%3D'360'%20r%3D'1.4'%2F%3E%0A%3Ccircle%20cx%3D'330'%20cy%3D'92'%20r%3D'1.4'%2F%3E%3Ccircle%20cx%3D'252'%20cy%3D'412'%20r%3D'1.4'%2F%3E%3Ccircle%20cx%3D'470'%20cy%3D'420'%20r%3D'1.4'%2F%3E%0A%3Ccircle%20cx%3D'182'%20cy%3D'60'%20r%3D'1.4'%2F%3E%3Ccircle%20cx%3D'62'%20cy%3D'278'%20r%3D'1.4'%2F%3E%3Ccircle%20cx%3D'360'%20cy%3D'470'%20r%3D'1.4'%2F%3E%0A%3Ccircle%20cx%3D'472'%20cy%3D'190'%20r%3D'1.4'%2F%3E%0A%3C%2Fg%3E%0A%3C%2Fsvg%3E")`,
-  "radial-gradient(620px 420px at 85% -8%, rgba(196,181,253,0.07), transparent 62%)",
-  "radial-gradient(520px 360px at -4% 6%, rgba(221,214,254,0.22), transparent 62%)",
-  "radial-gradient(640px 400px at 102% 58%, rgba(199,186,252,0.06), transparent 62%)",
-  "radial-gradient(560px 380px at 6% 104%, rgba(165,180,252,0.05), transparent 62%)",
+  "radial-gradient(620px 420px at 85% -8%, rgba(196,181,253,0.06), transparent 62%)",
+  "radial-gradient(520px 360px at -4% 6%, rgba(221,214,254,0.16), transparent 62%)",
   "linear-gradient(180deg, #ffffff 0%, #faf9fe 50%, #f5f3fb 100%)",
 ].join(", ");
 
-const AMBIENT_SIZE = "520px 520px, 100% 100%, 100% 100%, 100% 100%, 100% 100%";
-const AMBIENT_REPEAT = "repeat, no-repeat, no-repeat, no-repeat, no-repeat";
+const AMBIENT_SIZE = "100% 100%, 100% 100%, 100% 100%";
+const AMBIENT_REPEAT = "no-repeat, no-repeat, no-repeat";
 
 function formatDate(value) {
   if (!value) return "—";
@@ -65,13 +69,13 @@ function activityMeta(type) {
   if (t.includes("failed")) return { label: "Failed", color: "bg-red-100 text-red-700", icon: <XCircle className="w-4 h-4 text-red-500" /> };
   if (t.includes("cancell")) return { label: "Cancelled", color: "bg-gray-100 text-gray-600", icon: <Activity className="w-4 h-4 text-gray-500" /> };
   if (t.includes("complete")) return { label: "Completed", color: "bg-green-100 text-green-700", icon: <CheckCircle2 className="w-4 h-4 text-green-500" /> };
-  if (t.includes("start")) return { label: "Running", color: "bg-purple-100 text-purple-700", icon: <Activity className="w-4 h-4 text-purple-500" /> };
+  if (t.includes("start")) return { label: "Running", color: "bg-violet-100 text-violet-700", icon: <Activity className="w-4 h-4 text-violet-500" /> };
   if (t.includes("created")) return { label: "Created", color: "bg-green-100 text-green-700", icon: <CheckCircle2 className="w-4 h-4 text-green-500" /> };
   if (t.includes("deleted")) return { label: "Deleted", color: "bg-gray-100 text-gray-600", icon: <XCircle className="w-4 h-4 text-gray-500" /> };
   if (t.includes("requested")) return { label: "Requested", color: "bg-yellow-100 text-yellow-700", icon: <Activity className="w-4 h-4 text-yellow-500" /> };
   if (t.includes("granted")) return { label: "Approved", color: "bg-green-100 text-green-700", icon: <CheckCircle2 className="w-4 h-4 text-green-500" /> };
   if (t.includes("rejected")) return { label: "Rejected", color: "bg-red-100 text-red-700", icon: <XCircle className="w-4 h-4 text-red-500" /> };
-  if (t.includes("ai_")) return { label: "AI", color: "bg-purple-100 text-purple-700", icon: <Activity className="w-4 h-4 text-purple-500" /> };
+  if (t.includes("ai_")) return { label: "AI", color: "bg-violet-100 text-violet-700", icon: <Activity className="w-4 h-4 text-violet-500" /> };
   if (t.includes("logged_in")) return { label: "Login", color: "bg-blue-100 text-blue-700", icon: <CheckCircle2 className="w-4 h-4 text-blue-500" /> };
   if (t.includes("registered")) return { label: "Signup", color: "bg-blue-100 text-blue-700", icon: <CheckCircle2 className="w-4 h-4 text-blue-500" /> };
   return { label: t, color: "bg-gray-100 text-gray-600", icon: <CheckCircle2 className="w-4 h-4 text-gray-500" /> };
@@ -121,32 +125,32 @@ export default function Dashboard() {
           label: "Active Tasks",
           value: String(summary.activeTasks ?? 0),
           to: "/active-tasks",
-          icon: <ClipboardCheck className="w-5 h-5 text-white" />,
-          badge: "bg-gradient-to-br from-purple-600 to-purple-700 shadow-[0_8px_18px_-8px_rgba(124,58,237,0.5)]",
+          icon: <ClipboardCheck className="w-4 h-4 text-violet-700" />,
+          badge: "bg-gradient-to-br from-violet-100 to-violet-200",
           ...statTrend("activeTasks", summary.activeTasks ?? 0),
         },
         {
           label: "Completed Tasks",
           value: String(summary.completedTasks ?? 0),
           to: "/completed-today",
-          icon: <CheckCircle2 className="w-5 h-5 text-white" />,
-          badge: "bg-gradient-to-br from-purple-500 to-purple-600 shadow-[0_8px_18px_-8px_rgba(168,85,247,0.5)]",
+          icon: <CheckCircle2 className="w-4 h-4 text-violet-700" />,
+          badge: "bg-gradient-to-br from-violet-100 to-violet-200",
           ...statTrend("completedTasks", summary.completedTasks ?? 0),
         },
         {
           label: "Pending Approvals",
           value: String(summary.pendingApprovals ?? 0),
           to: "/pending-approvals",
-          icon: <Users className="w-5 h-5 text-white" />,
-          badge: "bg-gradient-to-br from-purple-400 to-purple-500 shadow-[0_8px_18px_-8px_rgba(192,132,252,0.5)]",
+          icon: <Users className="w-4 h-4 text-violet-700" />,
+          badge: "bg-gradient-to-br from-violet-100 to-violet-200",
           ...statTrend("pendingApprovals", summary.pendingApprovals ?? 0),
         },
         {
           label: "Running Executions",
           value: String(summary.runningExecutions ?? 0),
           to: "/executions",
-          icon: <CirclePlay className="w-5 h-5 text-white" />,
-          badge: "bg-gradient-to-br from-purple-300 to-purple-400 shadow-[0_8px_18px_-8px_rgba(216,180,254,0.5)]",
+          icon: <CirclePlay className="w-4 h-4 text-violet-700" />,
+          badge: "bg-gradient-to-br from-violet-100 to-violet-200",
           ...statTrend("runningExecutions", summary.runningExecutions ?? 0),
         },
       ]
@@ -188,7 +192,7 @@ export default function Dashboard() {
   });
 
   return (
-    <div className="p-6 flex flex-col gap-6 relative isolate">
+    <div className="pt-2 sm:pt-3 px-4 sm:px-5 pb-4 sm:pb-5 flex flex-col gap-5 relative isolate">
       {/* Ambient Aether backdrop (decorative only, sits behind all cards) */}
       <div
         aria-hidden="true"
@@ -199,42 +203,101 @@ export default function Dashboard() {
           backgroundRepeat: AMBIENT_REPEAT,
         }}
       />
-      {/* Top Bar (shared header: search, help, notifications, profile) */}
-      <TopBar />
 
       {/* Welcome Card */}
-      <div className="relative bg-gradient-to-br from-white via-purple-50/50 to-purple-100/30 border border-purple-100/70 rounded-2xl shadow-sm p-6 overflow-hidden hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_16px_36px_-16px_rgba(147,51,234,0.30)] transition-all duration-200 ease-out motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100">
-        <div className="absolute -right-10 -top-10 w-64 h-64 bg-[radial-gradient(circle_at_center,rgba(196,181,253,0.5),transparent_70%)] blur-2xl pointer-events-none" />
-        <svg
-          viewBox="0 0 120 90"
-          className="absolute -right-3 -bottom-5 w-44 h-auto text-purple-400/30 pointer-events-none hidden md:block"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="3"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          aria-hidden="true"
-        >
-          <path d="M60 8 L100 30 L60 52 L20 30 Z" />
-          <path d="M20 30 L20 70 L60 92 L60 52" />
-          <path d="M60 52 L60 92 L100 70 L100 30" />
-        </svg>
-        <h1 className="text-xl font-bold text-gray-900 relative">
-          Welcome back, {displayName}
-        </h1>
-        <p className="text-sm text-gray-500 mt-1 relative max-w-xl">
-          {loading
-            ? "Loading your workspace overview..."
-            : error
-            ? "Could not load your workspace summary."
-            : `${summary.activeTasks} active task${summary.activeTasks === 1 ? "" : "s"}, ${summary.runningExecutions} running execution${summary.runningExecutions === 1 ? "" : "s"}, ${summary.pendingApprovals} pending approval${summary.pendingApprovals === 1 ? "" : "s"}.`}
-        </p>
+      <div className="relative bg-white border border-violet-100/70 rounded-2xl shadow-sm p-5 overflow-hidden hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_20px_45px_-12px_rgba(109,40,217,0.45)] transition-all duration-200 ease-out motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100">
+        <div className="absolute -right-10 -top-10 w-64 h-64 bg-[radial-gradient(circle_at_center,rgba(196,181,253,0.4),transparent_70%)] blur-2xl pointer-events-none" />
+
+        {/* Ambient looped video background (decorative only) */}
+        <div aria-hidden="true" className="absolute inset-0 z-0 overflow-hidden rounded-2xl pointer-events-none select-none">
+          <video
+            className="w-full h-full object-cover opacity-45"
+            src={heroVideo}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            tabIndex={-1}
+          />
+        </div>
+        <div className="absolute inset-0 z-0 bg-gradient-to-r from-white/85 via-white/45 to-white/85 pointer-events-none" />
+
+        {/* Top row: badge (left) + search/help/bell/avatar (right) */}
+        <div className="relative flex items-center justify-between mb-4">
+          <span className="inline-flex items-center gap-1.5 bg-violet-50 border border-violet-100 rounded-full px-3 py-1 text-xs font-medium text-violet-700">
+            <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-br from-violet-600 to-violet-800" />
+            AI-Powered Agentic Platform
+          </span>
+          <TopBar />
+        </div>
+
+        <div className="relative flex flex-col lg:flex-row lg:items-start lg:justify-between gap-5">
+          {/* Left: greeting */}
+          <div className="min-w-0">
+<h1
+              className="text-[42px] font-bold leading-[1.05] tracking-[-0.02em] text-[#0F172A]"
+              style={{ fontFamily: "'Inter', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" }}
+            >
+              Welcome back,
+              <br />
+              <span className="text-[#581C87]">{displayName}</span>
+            </h1>
+            <p className="text-sm text-gray-500 mt-3 max-w-xl">
+              {loading
+                ? "Loading your workspace overview..."
+                : error
+                ? "Could not load your workspace summary."
+                : `${summary.activeTasks} active task${summary.activeTasks === 1 ? "" : "s"}, ${summary.runningExecutions} running execution${summary.runningExecutions === 1 ? "" : "s"}, ${summary.pendingApprovals} pending approval${summary.pendingApprovals === 1 ? "" : "s"}.`}
+            </p>
+            <div className="flex flex-wrap items-center gap-2 mt-4">
+              {[
+                { label: "Build smarter.", icon: <ShieldCheck className="w-3 h-3 text-violet-600" /> },
+                { label: "Automate faster.", icon: <Zap className="w-3 h-3 text-violet-600" /> },
+                { label: "Achieve more.", icon: <Target className="w-3 h-3 text-violet-600" /> },
+              ].map((chip) => (
+                <span
+                  key={chip.label}
+                  className="inline-flex items-center gap-1.5 border border-violet-200 rounded-full px-3 py-1 text-xs text-violet-700 bg-white/60"
+                >
+                  {chip.icon}
+                  {chip.label}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Right: AI Assistant panel */}
+          <div className="w-full lg:w-[300px] shrink-0 bg-violet-50 border border-violet-100 rounded-2xl p-4 flex items-center gap-3">
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-1.5 mb-1">
+                <span className="w-4 h-4 rounded-full bg-gradient-to-br from-violet-600 to-violet-800 text-white flex items-center justify-center shrink-0">
+                  <Plus className="w-2.5 h-2.5" />
+                </span>
+                <span className="text-sm font-bold text-violet-800">AI Assistant</span>
+              </div>
+              <p className="text-xs text-gray-500 leading-snug">
+                Your intelligent partner for better decisions and faster actions.
+              </p>
+              <button
+                onClick={() => navigate("/tasks/create")}
+                className="mt-3 inline-flex items-center gap-1.5 bg-gray-900 text-white rounded-full px-4 py-2 text-xs font-medium hover:bg-gray-800 hover:-translate-y-0.5 transition-all duration-200 ease-out"
+              >
+                Start a new task
+                <ArrowRight className="w-3 h-3" />
+              </button>
+            </div>
+            <div className="w-14 h-14 rounded-full bg-white border border-violet-100 flex items-center justify-center shrink-0 overflow-hidden">
+              <img src={robotMascot} alt="AI Assistant" className="w-10 h-10 object-contain" />
+            </div>
+          </div>
+        </div>
       </div>
 
       {loading ? (
         <div className="flex items-center justify-center py-16">
           <div className="flex flex-col items-center gap-3">
-            <div className="w-8 h-8 border-2 border-purple-600 border-t-transparent rounded-full animate-spin" />
+            <div className="w-8 h-8 border-2 border-violet-600 border-t-transparent rounded-full animate-spin" />
             <p className="text-xs text-gray-400">Loading your dashboard...</p>
           </div>
         </div>
@@ -251,10 +314,10 @@ export default function Dashboard() {
               <div
                 key={stat.label}
                 onClick={() => navigate(stat.to)}
-                className="bg-white/85 backdrop-blur-sm border border-gray-100/80 rounded-2xl shadow-sm p-5 relative overflow-hidden hover:bg-white/95 hover:border-purple-200/70 hover:-translate-y-0.5 hover:scale-[1.01] hover:shadow-[0_16px_36px_-14px_rgba(147,51,234,0.32)] cursor-pointer transition-all duration-200 ease-out motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100"
+                className="bg-white/85 backdrop-blur-sm border border-gray-100/80 rounded-2xl shadow-sm p-5 relative overflow-hidden hover:bg-white/95 hover:border-violet-200/70 hover:-translate-y-0.5 hover:scale-[1.01] hover:shadow-[0_20px_45px_-12px_rgba(109,40,217,0.45)] cursor-pointer transition-all duration-200 ease-out motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100"
               >
                 <div className="flex items-center gap-3 mb-3">
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${stat.badge}`}>
+                  <div className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 ${stat.badge}`}>
                     {stat.icon}
                   </div>
                   <span className="text-xs text-gray-500 font-medium leading-snug">
@@ -270,12 +333,12 @@ export default function Dashboard() {
           {/* Charts Row */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {/* Task Activity Chart */}
-            <div className="col-span-1 lg:col-span-2 bg-white/85 backdrop-blur-sm border border-gray-100/80 rounded-2xl shadow-sm p-5 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_16px_36px_-16px_rgba(147,51,234,0.28)] transition-all duration-200 ease-out motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100">
+            <div className="col-span-1 lg:col-span-2 bg-white/85 backdrop-blur-sm border border-gray-100/80 rounded-2xl shadow-sm p-5 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_20px_45px_-12px_rgba(109,40,217,0.45)] transition-all duration-200 ease-out motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-sm font-bold text-gray-900">
                   Task Activity This Week
                 </h2>
-                <button className="p-1 rounded hover:bg-purple-50 hover:-translate-y-0.5 hover:scale-[1.02] transition-all duration-200 ease-out">
+                <button className="p-1 rounded hover:bg-violet-50 hover:-translate-y-0.5 hover:scale-[1.02] transition-all duration-200 ease-out">
                   <MoreHorizontal className="w-4 h-4 text-gray-400" />
                 </button>
               </div>
@@ -325,7 +388,7 @@ export default function Dashboard() {
             </div>
 
             {/* Agent Success Rate Donut */}
-            <div className="bg-white/85 backdrop-blur-sm border border-gray-100/80 rounded-2xl shadow-sm p-5 flex flex-col items-center justify-center hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_16px_36px_-16px_rgba(147,51,234,0.28)] transition-all duration-200 ease-out motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100">
+            <div className="bg-white/85 backdrop-blur-sm border border-gray-100/80 rounded-2xl shadow-sm p-5 flex flex-col items-center justify-center hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_20px_45px_-12px_rgba(109,40,217,0.45)] transition-all duration-200 ease-out motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100">
               <h2 className="text-sm font-bold text-gray-900 mb-2 w-full">
                 Agent Success Rate
               </h2>
@@ -359,7 +422,7 @@ export default function Dashboard() {
               </div>
               <div className="flex items-center gap-4 mt-4">
                 <div className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-purple-600" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#7c3aed]" />
                   <span className="text-[10px] text-gray-500">Success ({successPct}%)</span>
                 </div>
                 <div className="flex items-center gap-1.5">
@@ -373,22 +436,22 @@ export default function Dashboard() {
           {/* Bottom Row */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {/* Recent Activity */}
-            <div className="col-span-1 lg:col-span-2 bg-white/85 backdrop-blur-sm border border-gray-100/80 rounded-2xl shadow-sm p-5 flex flex-col min-h-[340px] hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_16px_36px_-16px_rgba(147,51,234,0.28)] transition-all duration-200 ease-out motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100">
+            <div className="col-span-1 lg:col-span-2 bg-white/85 backdrop-blur-sm border border-gray-100/80 rounded-2xl shadow-sm p-5 flex flex-col min-h-[340px] hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_20px_45px_-12px_rgba(109,40,217,0.45)] transition-all duration-200 ease-out motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-sm font-bold text-gray-900">
                   Recent Activity
                 </h2>
                 <Link
                   to="/activity"
-                  className="text-xs text-purple-600 font-medium hover:underline"
+                  className="text-xs text-violet-600 font-medium hover:underline"
                 >
                   View All
                 </Link>
               </div>
               {displayActivities.length === 0 ? (
                 <div className="flex-1 flex flex-col items-center justify-center gap-3 py-8">
-                  <div className="w-10 h-10 rounded-xl bg-purple-50/80 flex items-center justify-center">
-                    <Activity className="w-5 h-5 text-purple-400" />
+                  <div className="w-10 h-10 rounded-xl bg-violet-50/80 flex items-center justify-center">
+                    <Activity className="w-5 h-5 text-violet-400" />
                   </div>
                   <div className="text-center">
                     <p className="text-xs text-gray-400">No recent activity</p>
@@ -402,7 +465,7 @@ export default function Dashboard() {
                   {displayActivities.map((item, i) => (
                     <div
                       key={i}
-                      className="flex items-center justify-between py-2 border-b border-gray-50 last:border-0 rounded-lg hover:bg-purple-50/40 transition-colors duration-150"
+                      className="flex items-center justify-between py-2 border-b border-gray-50 last:border-0 rounded-lg hover:bg-violet-50/40 transition-colors duration-150"
                     >
                       <div className="flex items-center gap-3">
                         {item.icon}
@@ -427,7 +490,7 @@ export default function Dashboard() {
             </div>
 
             {/* Live Executions */}
-            <div className="bg-white/85 backdrop-blur-sm border border-gray-100/80 rounded-2xl shadow-sm p-5 flex flex-col min-h-[340px] hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_16px_36px_-16px_rgba(147,51,234,0.28)] transition-all duration-200 ease-out motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100">
+            <div className="bg-white/85 backdrop-blur-sm border border-gray-100/80 rounded-2xl shadow-sm p-5 flex flex-col min-h-[340px] hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_20px_45px_-12px_rgba(109,40,217,0.45)] transition-all duration-200 ease-out motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100">
               <div className="mb-1">
                 <h2 className="text-sm font-bold text-gray-900">
                   Live Executions
@@ -454,7 +517,7 @@ export default function Dashboard() {
                             return (
                               <div className="bg-white rounded-lg shadow-lg border border-gray-100 px-3 py-2">
                                 <p className="text-xs font-bold text-gray-900">{label}</p>
-                                <p className="text-xs text-purple-600 font-semibold mt-0.5">
+                                <p className="text-xs text-violet-600 font-semibold mt-0.5">
                                   {value == null ? "Unavailable" : `Load: ${value}%`}
                                 </p>
                               </div>

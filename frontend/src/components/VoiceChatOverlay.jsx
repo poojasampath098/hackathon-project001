@@ -1008,7 +1008,7 @@ export default function VoiceChatOverlay({ onClose }) {
                       width: 3,
                       height: 8,
                       borderRadius: 999,
-                      background: "#8b5cf6",
+                      background: "#6d28d9",
                       display: "inline-block",
                       verticalAlign: "bottom",
                       transition: "height 90ms ease-out",
@@ -1028,7 +1028,7 @@ export default function VoiceChatOverlay({ onClose }) {
             style={{
               padding: 8,
               borderRadius: "50%",
-              background: input.trim() || selectedFiles.length > 0 ? "#8b5cf6" : "rgba(139,92,246,0.2)",
+              background: input.trim() || selectedFiles.length > 0 ? "#6d28d9" : "rgba(109,40,217,0.2)",
               border: "none",
               cursor: input.trim() || selectedFiles.length > 0 ? "pointer" : "default",
               display: "flex",

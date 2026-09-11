@@ -68,10 +68,10 @@ export default function CompletedToday() {
           <Badge variant="green">{loading ? "..." : `${completedTasks.length} completed`}</Badge>
         </div>
         <div className="flex items-center gap-2">
-          <button className="px-3 py-1.5 text-xs font-medium text-gray-600 border border-gray-200 rounded-lg bg-white hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out">
+          <button className="px-3 py-1.5 text-xs font-medium text-gray-600 border border-gray-200 rounded-lg bg-white hover:bg-violet-50/50 hover:border-violet-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.35)] transition-all duration-200 ease-out">
             Today
           </button>
-          <button className="flex items-center gap-1.5 px-3 py-1.5 text-xs text-gray-600 border border-gray-200 rounded-lg bg-white hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out">
+          <button className="flex items-center gap-1.5 px-3 py-1.5 text-xs text-gray-600 border border-gray-200 rounded-lg bg-white hover:bg-violet-50/50 hover:border-violet-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.35)] transition-all duration-200 ease-out">
             <Filter className="w-3 h-3" />
             Filter
           </button>
@@ -80,7 +80,7 @@ export default function CompletedToday() {
 
       {loading ? (
         <div className="flex items-center justify-center py-12">
-          <div className="w-8 h-8 border-2 border-purple-600 border-t-transparent rounded-full animate-spin" />
+          <div className="w-8 h-8 border-2 border-violet-700 border-t-transparent rounded-full animate-spin" />
         </div>
       ) : error ? (
         <div className="bg-white rounded-xl shadow-sm p-8 text-center">
@@ -99,7 +99,7 @@ export default function CompletedToday() {
             {group.tasks.map((task) => (
               <div
                 key={task.id}
-                className="bg-white rounded-xl shadow-sm p-4 flex items-center justify-between hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(147,51,234,0.25)] transition-all duration-200 ease-out"
+                className="bg-white rounded-xl shadow-sm p-4 flex items-center justify-between hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(109,40,217,0.25)] transition-all duration-200 ease-out"
               >
                 <div className="flex items-center gap-3">
                   <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" />
@@ -121,7 +121,7 @@ export default function CompletedToday() {
                   <Badge variant="green">COMPLETED</Badge>
                   <button
                     onClick={() => navigate(`/tasks/${task.id}`)}
-                    className="text-[10px] font-semibold text-purple-600 hover:text-purple-700 px-3 py-1.5 border border-purple-200 rounded-lg hover:bg-purple-50 hover:border-purple-300 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_6px_14px_-6px_rgba(147,51,234,0.35)] active:scale-95 transition-all duration-200 ease-out"
+                    className="text-[10px] font-semibold text-violet-700 hover:text-violet-800 px-3 py-1.5 border border-violet-200 rounded-lg hover:bg-violet-50 hover:border-violet-400 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_6px_14px_-6px_rgba(109,40,217,0.35)] active:scale-95 transition-all duration-200 ease-out"
                   >
                     View Result
                   </button>

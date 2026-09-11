@@ -294,7 +294,7 @@ export default function TaskDetails() {
 
       {loading ? (
         <div className="flex items-center justify-center py-16">
-          <div className="w-8 h-8 border-2 border-purple-600 border-t-transparent rounded-full animate-spin" />
+          <div className="w-8 h-8 border-2 border-violet-700 border-t-transparent rounded-full animate-spin" />
         </div>
       ) : error ? (
         <div className="bg-white rounded-xl shadow-sm p-8 text-center">
@@ -308,7 +308,7 @@ export default function TaskDetails() {
         <>
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600 flex items-center justify-center shrink-0">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center shrink-0">
                 <span className="text-white text-xs font-bold">
                   {(task.agent || "T").charAt(0)}
                 </span>
@@ -328,7 +328,7 @@ export default function TaskDetails() {
                 <button
                   onClick={() => handlePatch("completed")}
                   disabled={busy}
-                  className="flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-purple-600 border border-purple-200 rounded-lg hover:bg-purple-50 hover:border-purple-300 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_6px_14px_-6px_rgba(147,51,234,0.35)] active:scale-95 transition-all duration-200 ease-out disabled:opacity-40"
+                  className="flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-violet-700 border border-violet-200 rounded-lg hover:bg-violet-50 hover:border-violet-400 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_6px_14px_-6px_rgba(109,40,217,0.35)] active:scale-95 transition-all duration-200 ease-out disabled:opacity-40"
                 >
                   <CheckCircle2 className="w-3.5 h-3.5" />
                   Mark Complete
@@ -345,7 +345,7 @@ export default function TaskDetails() {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-sm p-6 max-w-2xl flex flex-col gap-5 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(147,51,234,0.25)] transition-all duration-200 ease-out">
+          <div className="bg-white rounded-xl shadow-sm p-6 max-w-2xl flex flex-col gap-5 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(109,40,217,0.25)] transition-all duration-200 ease-out">
             <div>
               <p className="text-[10px] text-gray-400 uppercase tracking-wide mb-1.5">
                 Description
@@ -384,7 +384,7 @@ export default function TaskDetails() {
           </div>
 
           {/* Execution History / Result */}
-          <div className="bg-white rounded-xl shadow-sm p-6 flex flex-col gap-4 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(147,51,234,0.25)] transition-all duration-200 ease-out">
+          <div className="bg-white rounded-xl shadow-sm p-6 flex flex-col gap-4 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(109,40,217,0.25)] transition-all duration-200 ease-out">
             <div className="flex items-center justify-between">
               <h2 className="text-xs font-bold text-gray-500 uppercase tracking-wide">
                 Execution History
@@ -396,7 +396,7 @@ export default function TaskDetails() {
 
             {executionsLoading ? (
               <div className="flex items-center justify-center py-8">
-                <div className="w-6 h-6 border-2 border-purple-600 border-t-transparent rounded-full animate-spin" />
+                <div className="w-6 h-6 border-2 border-violet-700 border-t-transparent rounded-full animate-spin" />
               </div>
             ) : executions.length === 0 ? (
               <p className="text-xs text-gray-400 py-6 text-center">
@@ -416,7 +416,7 @@ export default function TaskDetails() {
                         <div className="flex items-center gap-2">
                           {statusBadge(exec.status)}
                           {exec.status === "running" && (
-                            <span className="w-3 h-3 border-2 border-purple-600 border-t-transparent rounded-full animate-spin" />
+                            <span className="w-3 h-3 border-2 border-violet-700 border-t-transparent rounded-full animate-spin" />
                           )}
                         </div>
                         <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 mt-1.5 text-[11px] text-gray-400">
@@ -450,7 +450,7 @@ export default function TaskDetails() {
                       {hasOutput ? (
                         <button
                           onClick={() => openResult(exec)}
-                          className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-purple-700 bg-purple-50 rounded-lg hover:bg-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_6px_14px_-6px_rgba(147,51,234,0.35)] active:scale-95 transition-all duration-200 ease-out shrink-0"
+                          className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-violet-800 bg-violet-50 rounded-lg hover:bg-violet-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_6px_14px_-6px_rgba(109,40,217,0.35)] active:scale-95 transition-all duration-200 ease-out shrink-0"
                         >
                           <Eye className="w-3.5 h-3.5" />
                           View Result
@@ -489,7 +489,7 @@ export default function TaskDetails() {
               </div>
               <button
                 onClick={closeResult}
-                className="p-1.5 rounded-lg hover:bg-purple-50 hover:-translate-y-0.5 hover:scale-[1.05] transition-all duration-200 ease-out shrink-0"
+                className="p-1.5 rounded-lg hover:bg-violet-50 hover:-translate-y-0.5 hover:scale-[1.05] transition-all duration-200 ease-out shrink-0"
                 aria-label="Close result"
               >
                 <X className="w-4 h-4 text-gray-400" />
@@ -535,7 +535,7 @@ export default function TaskDetails() {
                           href={url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-xs text-purple-600 hover:text-purple-700 hover:underline break-all"
+                          className="text-xs text-violet-700 hover:text-violet-800 hover:underline break-all"
                         >
                           {url}
                         </a>
@@ -567,7 +567,7 @@ export default function TaskDetails() {
                 </div>
                 {resultArtifactsLoading ? (
                   <div className="flex items-center justify-center py-4">
-                    <div className="w-5 h-5 border-2 border-purple-600 border-t-transparent rounded-full animate-spin" />
+                    <div className="w-5 h-5 border-2 border-violet-700 border-t-transparent rounded-full animate-spin" />
                   </div>
                 ) : resultArtifacts.length === 0 ? (
                   <p className="text-xs text-gray-400">
@@ -584,7 +584,7 @@ export default function TaskDetails() {
                           className="border border-gray-100 rounded-xl p-3.5"
                         >
                           <div className="flex items-center gap-2.5">
-                            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600 flex items-center justify-center shrink-0">
+                            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center shrink-0">
                               <FileText className="w-4 h-4 text-white" />
                             </div>
                             <div className="min-w-0 flex-1">
@@ -602,7 +602,7 @@ export default function TaskDetails() {
                               onClick={() =>
                                 setPreviewArtifactId(isOpen ? null : artifactId)
                               }
-                              className="text-[10px] font-semibold text-purple-700 bg-purple-50 hover:bg-purple-100 px-2.5 py-1.5 rounded-lg hover:-translate-y-0.5 hover:scale-[1.02] transition-all duration-200 ease-out active:scale-95 shrink-0"
+                              className="text-[10px] font-semibold text-violet-800 bg-violet-50 hover:bg-violet-100 px-2.5 py-1.5 rounded-lg hover:-translate-y-0.5 hover:scale-[1.02] transition-all duration-200 ease-out active:scale-95 shrink-0"
                             >
                               {isOpen ? "Hide" : "Preview"}
                             </button>

@@ -83,7 +83,7 @@ export default function AgentsRunning() {
             </Badge>
           )}
         </div>
-        <button className="flex items-center gap-1.5 px-3 py-1.5 text-xs text-gray-600 border border-gray-200 rounded-lg bg-white hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out">
+        <button className="flex items-center gap-1.5 px-3 py-1.5 text-xs text-gray-600 border border-gray-200 rounded-lg bg-white hover:bg-violet-50/50 hover:border-violet-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.35)] transition-all duration-200 ease-out">
           <Filter className="w-3 h-3" />
           Filter
         </button>
@@ -110,11 +110,11 @@ export default function AgentsRunning() {
           {rows.map((agent) => (
             <div
               key={agent.id}
-              className="bg-white rounded-xl shadow-sm p-5 flex flex-col gap-4 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(147,51,234,0.25)] transition-all duration-200 ease-out"
+              className="bg-white rounded-xl shadow-sm p-5 flex flex-col gap-4 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(109,40,217,0.25)] transition-all duration-200 ease-out"
             >
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center">
                     <span className="text-white text-xs font-bold">
                       {(agent.agent || "?").charAt(0).toUpperCase()}
                     </span>
@@ -126,7 +126,7 @@ export default function AgentsRunning() {
                     <p className="text-[10px] text-gray-400">Active agent</p>
                   </div>
                 </div>
-                <button className="p-1 rounded hover:bg-purple-50 hover:-translate-y-0.5 hover:scale-[1.02] transition-all duration-200 ease-out">
+                <button className="p-1 rounded hover:bg-violet-50 hover:-translate-y-0.5 hover:scale-[1.02] transition-all duration-200 ease-out">
                   <MoreHorizontal className="w-4 h-4 text-gray-400" />
                 </button>
               </div>

@@ -1,4 +1,4 @@
-﻿import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Search,
@@ -197,10 +197,16 @@ export default function TopBar({ showSearch = true, showHelp = true, rightConten
       {showSearch && (
         <div className="relative" ref={searchRef}>
           <button
-onClick={() => toggleDropdown("search")}
-            className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out"
+            onClick={() => toggleDropdown("search")}
+            className="flex items-center gap-2 w-64 lg:w-72 pl-3.5 pr-2 py-2 rounded-full border border-gray-200 bg-gray-50 hover:border-violet-200 hover:bg-violet-50/40 transition-all duration-200 ease-out text-left"
           >
-            <Search className="w-4 h-4 text-gray-500" />
+            <Search className="w-4 h-4 text-gray-400 shrink-0" />
+            <span className="flex-1 text-xs text-gray-400 truncate">
+              Search tasks, agents, or anything
+            </span>
+            <span className="text-[10px] bg-white border border-gray-200 rounded px-1.5 py-0.5 text-gray-400 font-medium shrink-0">
+              Ctrl+K
+            </span>
           </button>
           {openDropdown === "search" && (
             <div className="absolute right-0 top-full mt-2 w-80 bg-white rounded-xl shadow-lg border border-gray-100 z-50 overflow-hidden">
@@ -213,7 +219,7 @@ onClick={() => toggleDropdown("search")}
                     placeholder="Search tasks, agents, or logs..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-9 pr-4 py-2 text-xs border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-400"
+                    className="w-full pl-9 pr-4 py-2 text-xs border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-400"
                   />
                 </div>
               </div>
@@ -239,7 +245,7 @@ onClick={() => toggleDropdown("search")}
                             <div
                               key={`${type}-${i}`}
                               onClick={() => handleSearchResultClick(r)}
-                              className="px-4 py-2.5 hover:bg-purple-50 cursor-pointer transition border-b border-gray-50 last:border-0"
+                              className="px-4 py-2.5 hover:bg-violet-50 cursor-pointer transition border-b border-gray-50 last:border-0"
                             >
                               <p className="text-xs text-gray-700">{r.label}</p>
                             </div>
@@ -262,7 +268,7 @@ onClick={() => toggleDropdown("search")}
 {showHelp && (
         <button
           onClick={() => { setOpenDropdown(null); navigate("/user-guide"); }}
-          className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out"
+          className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center hover:bg-violet-50/50 hover:border-violet-200 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.35)] transition-all duration-200 ease-out shrink-0"
           title="Open User Guide"
           aria-label="Open User Guide"
         >
@@ -273,7 +279,7 @@ onClick={() => toggleDropdown("search")}
       <div className="relative" ref={bellRef}>
         <button
 onClick={() => toggleDropdown("bell")}
-          className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out relative"
+          className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center hover:bg-violet-50/50 hover:border-violet-200 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.35)] transition-all duration-200 ease-out relative shrink-0"
         >
           <Bell className="w-4 h-4 text-gray-500" />
           {hasUnread && (
@@ -286,7 +292,7 @@ onClick={() => toggleDropdown("bell")}
               <p className="text-xs font-bold text-gray-900">Notifications</p>
 <button
                 onClick={handleMarkAllRead}
-                className="text-[10px] text-purple-600 font-medium hover:text-purple-700"
+                className="text-[10px] text-violet-600 font-medium hover:text-violet-700"
               >
                 Mark all as read
               </button>
@@ -301,8 +307,8 @@ onClick={() => toggleDropdown("bell")}
                 <div
                   key={n.id}
                   onClick={() => handleNotificationClick(n)}
-                  className={`px-4 py-3 border-b border-gray-50 last:border-0 hover:bg-purple-50 transition cursor-pointer ${
-                    !n.read ? "bg-purple-50/30" : ""
+                  className={`px-4 py-3 border-b border-gray-50 last:border-0 hover:bg-violet-50 transition cursor-pointer ${
+                    !n.read ? "bg-violet-50/30" : ""
                   }`}
                 >
                   <div className="flex items-start justify-between gap-2">
@@ -311,7 +317,7 @@ onClick={() => toggleDropdown("bell")}
                       <p className="text-[11px] text-gray-500 mt-0.5">{n.desc}</p>
                     </div>
                     {!n.read && (
-                      <span className="w-2 h-2 rounded-full bg-purple-500 shrink-0 mt-1" />
+                      <span className="w-2 h-2 rounded-full bg-violet-500 shrink-0 mt-1" />
                     )}
                   </div>
                   <p className="text-[10px] text-gray-400 mt-1">{n.time}</p>
@@ -326,12 +332,12 @@ onClick={() => toggleDropdown("bell")}
       <div className="relative" ref={profileRef}>
 <button
           onClick={() => toggleDropdown("profile")}
-          className="w-8 h-8 rounded-full flex items-center justify-center overflow-hidden hover:opacity-95 hover:-translate-y-0.5 hover:scale-[1.05] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.4)] transition-all duration-200 ease-out"
+          className="w-8 h-8 rounded-full flex items-center justify-center overflow-hidden hover:opacity-95 hover:-translate-y-0.5 hover:scale-[1.05] hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.4)] transition-all duration-200 ease-out"
         >
           {user?.avatar ? (
             <img src={user.avatar} alt="avatar" className="w-full h-full object-cover" />
           ) : (
-            <div className="w-full h-full bg-gradient-to-br from-purple-400 to-indigo-600 flex items-center justify-center">
+            <div className="w-full h-full bg-gray-900 flex items-center justify-center">
               <span className="text-white text-xs font-bold">{avatarLetter}</span>
             </div>
           )}
@@ -344,7 +350,7 @@ onClick={() => toggleDropdown("bell")}
                   {user?.avatar ? (
                     <img src={user.avatar} alt="avatar" className="w-full h-full object-cover" />
                   ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-purple-400 to-indigo-600 flex items-center justify-center">
+                    <div className="w-full h-full bg-gray-900 flex items-center justify-center">
                       <span className="text-white text-xs font-bold">{avatarLetter}</span>
                     </div>
                   )}
@@ -358,14 +364,14 @@ onClick={() => toggleDropdown("bell")}
             <div className="py-1">
               <button
                 onClick={() => { navigate("/profile"); setOpenDropdown(null); }}
-                className="w-full flex items-center gap-3 px-4 py-2.5 text-xs text-gray-700 hover:bg-purple-50 transition text-left"
+                className="w-full flex items-center gap-3 px-4 py-2.5 text-xs text-gray-700 hover:bg-violet-50 transition text-left"
               >
                 <User className="w-4 h-4 text-gray-400" />
                 Profile
               </button>
               <button
                 onClick={() => { navigate("/settings"); setOpenDropdown(null); }}
-                className="w-full flex items-center gap-3 px-4 py-2.5 text-xs text-gray-700 hover:bg-purple-50 transition text-left"
+                className="w-full flex items-center gap-3 px-4 py-2.5 text-xs text-gray-700 hover:bg-violet-50 transition text-left"
               >
                 <Settings className="w-4 h-4 text-gray-400" />
                 Settings

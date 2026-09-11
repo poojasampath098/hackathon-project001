@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Search, Bell, Trash2, CheckCircle2, XCircle, Activity as ActivityIcon, Bot, X, LogIn, RefreshCw } from "lucide-react";
 import Badge from "../components/ui/Badge";
 import { activityApi } from "../services/activity.api";
@@ -23,7 +23,7 @@ function typePresentation(type) {
   if (t.includes("failed")) return { label: "Failed", variant: "red", icon: <XCircle className="w-4 h-4 text-red-500" /> };
   if (t.includes("cancell")) return { label: "Cancelled", variant: "gray", icon: <ActivityIcon className="w-4 h-4 text-gray-500" /> };
   if (t.includes("completed")) return { label: "Completed", variant: "green", icon: <CheckCircle2 className="w-4 h-4 text-green-500" /> };
-  if (t.includes("started")) return { label: "Started", variant: "purple", icon: <ActivityIcon className="w-4 h-4 text-purple-500" /> };
+  if (t.includes("started")) return { label: "Started", variant: "purple", icon: <ActivityIcon className="w-4 h-4 text-violet-600" /> };
   if (t.includes("created")) return { label: "Created", variant: "green", icon: <CheckCircle2 className="w-4 h-4 text-green-500" /> };
   if (t.includes("updated")) return { label: "Updated", variant: "blue", icon: <RefreshCw className="w-4 h-4 text-blue-500" /> };
   if (t.includes("deleted")) return { label: "Deleted", variant: "gray", icon: <XCircle className="w-4 h-4 text-gray-500" /> };
@@ -31,7 +31,7 @@ function typePresentation(type) {
   if (t.includes("granted")) return { label: "Granted", variant: "green", icon: <CheckCircle2 className="w-4 h-4 text-green-500" /> };
   if (t.includes("rejected")) return { label: "Rejected", variant: "red", icon: <XCircle className="w-4 h-4 text-red-500" /> };
   if (t.includes("toggled")) return { label: "Toggled", variant: "blue", icon: <RefreshCw className="w-4 h-4 text-blue-500" /> };
-  if (t.includes("ai_")) return { label: "AI", variant: "purple", icon: <Bot className="w-4 h-4 text-purple-500" /> };
+  if (t.includes("ai_")) return { label: "AI", variant: "purple", icon: <Bot className="w-4 h-4 text-violet-600" /> };
   if (t.includes("logged_in")) return { label: "Login", variant: "blue", icon: <LogIn className="w-4 h-4 text-blue-500" /> };
   if (t.includes("registered")) return { label: "Registered", variant: "blue", icon: <CheckCircle2 className="w-4 h-4 text-blue-500" /> };
   return { label: t || "Activity", variant: "gray", icon: <ActivityIcon className="w-4 h-4 text-gray-500" /> };
@@ -77,15 +77,15 @@ const [toast, setToast] = useState(null);
     <div className="p-6 flex flex-col gap-6">
       {/* Top Navbar */}
       <div className="flex items-center justify-end gap-4">
-        <button className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out">
+        <button className="p-2 rounded-lg border border-transparent hover:bg-violet-50/50 hover:border-violet-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.35)] transition-all duration-200 ease-out">
           <Search className="w-4 h-4 text-gray-500" />
         </button>
-        <button className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out relative">
+        <button className="p-2 rounded-lg border border-transparent hover:bg-violet-50/50 hover:border-violet-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.35)] transition-all duration-200 ease-out relative">
           <Bell className="w-4 h-4 text-gray-500" />
           <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full" />
         </button>
-        <button className="p-2 rounded-lg border border-transparent hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)] transition-all duration-200 ease-out">
-          <span className="flex w-8 h-8 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600 items-center justify-center">
+        <button className="p-2 rounded-lg border border-transparent hover:bg-violet-50/50 hover:border-violet-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.35)] transition-all duration-200 ease-out">
+          <span className="flex w-8 h-8 rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 items-center justify-center">
             <span className="text-white text-xs font-bold">A</span>
           </span>
         </button>
@@ -100,7 +100,7 @@ const [toast, setToast] = useState(null);
 
       {loading ? (
         <div className="flex items-center justify-center py-16">
-          <div className="w-8 h-8 border-2 border-purple-600 border-t-transparent rounded-full animate-spin" />
+          <div className="w-8 h-8 border-2 border-violet-700 border-t-transparent rounded-full animate-spin" />
         </div>
       ) : error ? (
         <div className="bg-red-50 border border-red-200 rounded-xl p-8 text-center">
@@ -112,7 +112,7 @@ const [toast, setToast] = useState(null);
           <p className="text-sm text-gray-400">No activity recorded yet</p>
         </div>
       ) : (
-        <div className="bg-white rounded-xl shadow-sm overflow-hidden hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(147,51,234,0.25)] transition-all duration-200 ease-out">
+        <div className="bg-white rounded-xl shadow-sm overflow-hidden hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(109,40,217,0.25)] transition-all duration-200 ease-out">
           <div className="divide-y divide-gray-50">
 {items.map((item, i) => {
               const id = item._id || item.id;
@@ -123,7 +123,7 @@ const [toast, setToast] = useState(null);
                   className="activity-pop-in flex items-center gap-4 px-6 py-3.5 hover:bg-gray-50 transition"
                   style={{ animationDelay: `${Math.min(i, 8) * 55}ms` }}
                 >
-                  <div className="w-8 h-8 rounded-full bg-purple-50 flex items-center justify-center shrink-0">
+                  <div className="w-8 h-8 rounded-full bg-violet-50 flex items-center justify-center shrink-0">
                     {meta.icon}
                   </div>
                   <div className="flex-1 min-w-0">

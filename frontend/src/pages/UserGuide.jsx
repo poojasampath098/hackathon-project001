@@ -26,7 +26,7 @@ import TopBar from "../components/layout/TopBar";
 
 function Pill({ children }) {
   return (
-    <span className="inline-block bg-purple-100 text-purple-700 font-semibold px-1.5 py-0.5 rounded text-[10px]">
+    <span className="inline-block bg-violet-100 text-violet-800 font-semibold px-1.5 py-0.5 rounded text-[10px]">
       {children}
     </span>
   );
@@ -34,7 +34,7 @@ function Pill({ children }) {
 
 function IconPill({ icon: Icon, children }) {
   return (
-    <span className="inline-flex items-center gap-1 bg-purple-100 text-purple-700 font-semibold px-1.5 py-0.5 rounded text-[10px]">
+    <span className="inline-flex items-center gap-1 bg-violet-100 text-violet-800 font-semibold px-1.5 py-0.5 rounded text-[10px]">
       <Icon className="w-3 h-3" />
       {children}
     </span>
@@ -51,7 +51,7 @@ function Bullets({ items, tone = "ok" }) {
       {items.map((item, i) => (
         <li
           key={i}
-          className="flex items-start gap-2.5 text-xs text-gray-600 leading-relaxed px-3 py-2.5 rounded-xl bg-gray-50/60 border border-gray-100/60 backdrop-blur-sm transition-all duration-200 hover:bg-purple-50/50 hover:border-purple-100/80"
+          className="flex items-start gap-2.5 text-xs text-gray-600 leading-relaxed px-3 py-2.5 rounded-xl bg-gray-50/60 border border-gray-100/60 backdrop-blur-sm transition-all duration-200 hover:bg-violet-50/50 hover:border-violet-100/80"
         >
           {tone === "warn" ? (
             <XCircle className="w-3.5 h-3.5 text-red-400 shrink-0 mt-0.5" />
@@ -77,7 +77,7 @@ function StatusTable({ rows }) {
   };
   return (
     <div className="overflow-hidden rounded-xl border border-gray-100/70 shadow-sm">
-      <div className="grid grid-cols-[150px_1fr] bg-gradient-to-r from-purple-50/90 to-gray-50 px-4 py-3 text-[10px] font-semibold text-purple-700 uppercase tracking-wide border-b border-gray-100">
+      <div className="grid grid-cols-[150px_1fr] bg-gradient-to-r from-violet-50/90 to-gray-50 px-4 py-3 text-[10px] font-semibold text-violet-800 uppercase tracking-wide border-b border-gray-100">
         <div>Status</div>
         <div>What it means</div>
       </div>
@@ -86,7 +86,7 @@ function StatusTable({ rows }) {
           key={i}
           className={`grid grid-cols-[150px_1fr] px-4 py-3 text-xs border-b border-gray-50 last:border-0 transition-colors duration-200 ${
             i % 2 === 1 ? "bg-gray-50/40" : "bg-white/80"
-          } hover:bg-purple-50/40`}
+          } hover:bg-violet-50/40`}
         >
           <div className="flex items-center gap-2 font-semibold text-gray-800">
             <span className={`w-1.5 h-1.5 rounded-full ${dotMap[row.status] || "bg-gray-300"}`} />
@@ -840,7 +840,7 @@ export default function UserGuide() {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-xl font-bold bg-gradient-to-r from-purple-700 via-purple-600 to-indigo-500 bg-clip-text text-transparent">
+            <h1 className="text-xl font-bold bg-gradient-to-r from-violet-800 via-violet-700 to-indigo-500 bg-clip-text text-transparent">
               User Guide
             </h1>
             <p className="text-sm text-gray-500 mt-0.5 max-w-2xl">
@@ -856,8 +856,8 @@ export default function UserGuide() {
           <div className="lg:col-span-1 lg:sticky lg:top-6 lg:self-start">
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-100/70 shadow-sm p-4">
               <h2 className="flex items-center gap-2 text-xs font-bold text-gray-900 mb-3 px-1">
-                <span className="w-4 h-4 rounded bg-purple-100 flex items-center justify-center">
-                  <BookOpen className="w-3 h-3 text-purple-600" />
+                <span className="w-4 h-4 rounded bg-violet-100 flex items-center justify-center">
+                  <BookOpen className="w-3 h-3 text-violet-700" />
                 </span>
                 On this page
               </h2>
@@ -868,20 +868,20 @@ export default function UserGuide() {
                     onClick={() => setActiveSection(section.id)}
                     className={`group flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium transition-all duration-200 ease-out w-full text-left border cursor-pointer ${
                       activeSection === section.id
-                        ? "bg-purple-50 text-purple-700 border-purple-200/80 shadow-[0_2px_10px_-4px_rgba(147,51,234,0.25)]"
-                        : "border-transparent text-gray-500 hover:text-gray-800 hover:bg-purple-50/50 hover:border-purple-100 hover:translate-x-[3px] hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)]"
+                        ? "bg-violet-50 text-violet-800 border-violet-200/80 shadow-[0_2px_10px_-4px_rgba(109,40,217,0.25)]"
+                        : "border-transparent text-gray-500 hover:text-gray-800 hover:bg-violet-50/50 hover:border-violet-100 hover:translate-x-[3px] hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.35)]"
                     }`}
                   >
                     <section.icon
                       className={`w-4 h-4 shrink-0 transition-transform duration-200 ${
                         activeSection === section.id
-                          ? "text-purple-600"
-                          : "text-gray-400 group-hover:text-purple-500 group-hover:scale-110"
+                          ? "text-violet-700"
+                          : "text-gray-400 group-hover:text-violet-600 group-hover:scale-110"
                       }`}
                     />
                     <span className="truncate">{section.label}</span>
                     {activeSection === section.id && (
-                      <span className="ml-auto w-1.5 h-1.5 rounded-full bg-purple-500 shrink-0" />
+                      <span className="ml-auto w-1.5 h-1.5 rounded-full bg-violet-600 shrink-0" />
                     )}
                   </button>
                 ))}
@@ -892,22 +892,22 @@ export default function UserGuide() {
           {/* Right: active section */}
           <div className="lg:col-span-3">
             <div key={active.id} className="guide-fade">
-              <div className="relative bg-white/90 backdrop-blur-sm overflow-hidden rounded-2xl border border-gray-100/70 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:border-purple-100 hover:shadow-[0_20px_44px_-18px_rgba(147,51,234,0.35)] hover:ring-1 hover:ring-purple-100/60">
-                <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-purple-500 via-indigo-400 to-transparent" />
+              <div className="relative bg-white/90 backdrop-blur-sm overflow-hidden rounded-2xl border border-gray-100/70 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:border-violet-100 hover:shadow-[0_20px_44px_-18px_rgba(109,40,217,0.35)] hover:ring-1 hover:ring-violet-100/60">
+                <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-violet-600 via-indigo-400 to-transparent" />
                 <div className="p-6 lg:p-7">
                   <div className="mb-6">
                     <div className="flex items-center gap-3">
-                      <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500/10 to-indigo-500/10 ring-1 ring-purple-200/60 flex items-center justify-center shrink-0">
-                        <active.icon className="w-5 h-5 text-purple-600" />
+                      <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-600/10 to-indigo-500/10 ring-1 ring-violet-200/60 flex items-center justify-center shrink-0">
+                        <active.icon className="w-5 h-5 text-violet-700" />
                       </span>
                       <div className="min-w-0">
-                        <h2 className="text-base font-extrabold tracking-tight bg-gradient-to-r from-purple-700 via-purple-600 to-indigo-500 bg-clip-text text-transparent">
+                        <h2 className="text-base font-extrabold tracking-tight bg-gradient-to-r from-violet-800 via-violet-700 to-indigo-500 bg-clip-text text-transparent">
                           {active.label}
                         </h2>
                         <p className="text-xs text-gray-500 mt-0.5">{active.desc}</p>
                       </div>
                     </div>
-                    <div className="mt-5 h-px bg-gradient-to-r from-purple-200/80 via-purple-100/40 to-transparent" />
+                    <div className="mt-5 h-px bg-gradient-to-r from-violet-200/80 via-violet-100/40 to-transparent" />
                   </div>
                   <div className="flex flex-col gap-4">{active.body}</div>
                 </div>

@@ -23,6 +23,7 @@ const config = {
   nvidiaApiKey: process.env.NVIDIA_API_KEY,
   nvidiaBaseUrl: process.env.NVIDIA_BASE_URL || "https://integrate.api.nvidia.com/v1",
   aiModel: process.env.AI_MODEL || "deepseek-ai/deepseek-v4-pro",
+  aiTimeoutMs: parseInt(process.env.AI_TIMEOUT_MS, 10) || 90000,
   cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME,
   cloudinaryApiKey: process.env.CLOUDINARY_API_KEY,
   cloudinaryApiSecret: process.env.CLOUDINARY_API_SECRET,

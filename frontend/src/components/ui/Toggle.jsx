@@ -13,8 +13,8 @@ export default function Toggle({ defaultChecked = false, onChange }) {
     <button
       type="button"
       onClick={toggle}
-      className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.4)] focus:outline-none ${
-        on ? "bg-purple-600" : "bg-gray-300"
+      className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.4)] focus:outline-none ${
+        on ? "bg-gradient-to-br from-violet-600 to-violet-800" : "bg-gray-300"
       }`}
     >
       <span

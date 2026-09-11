@@ -227,14 +227,14 @@ export default function Profile() {
       </div>
 
       {/* Profile card */}
-      <div className="bg-white rounded-xl shadow-sm p-6 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(147,51,234,0.25)] transition-all duration-200 ease-out">
+      <div className="bg-white rounded-xl shadow-sm p-6 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(109,40,217,0.25)] transition-all duration-200 ease-out">
         <div className="flex gap-8">
           {/* Photo + badge */}
           <div className="flex flex-col items-center gap-3 shrink-0">
             {(previewUrl || avatar) ? (
               <img src={previewUrl || avatar} alt="avatar" className="w-20 h-20 rounded-full object-cover" />
             ) : (
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600 flex items-center justify-center">
+              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center">
                 <span className="text-white text-2xl font-bold">
                   {initialsText}
                 </span>
@@ -245,7 +245,7 @@ export default function Profile() {
                 {firstName} {lastName}
               </p>
               {role && (
-                <span className="inline-block mt-1 text-[10px] font-semibold bg-purple-100 text-purple-700 px-2.5 py-0.5 rounded-full">
+                <span className="inline-block mt-1 text-[10px] font-semibold bg-violet-100 text-violet-800 px-2.5 py-0.5 rounded-full">
                   {role}
                 </span>
               )}
@@ -259,7 +259,7 @@ export default function Profile() {
             />
             <button
               onClick={() => fileInputRef.current?.click()}
-              className="text-[11px] text-gray-400 hover:text-purple-600 hover:-translate-y-0.5 transition-all duration-200 ease-out flex items-center gap-1"
+              className="text-[11px] text-gray-400 hover:text-violet-700 hover:-translate-y-0.5 transition-all duration-200 ease-out flex items-center gap-1"
             >
               <Camera className="w-3 h-3" />
               Change Photo
@@ -276,7 +276,7 @@ export default function Profile() {
                 type="text"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                className="w-full text-sm px-3 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-400"
+                className="w-full text-sm px-3 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-600/20 focus:border-violet-500"
               />
             </div>
             <div>
@@ -287,7 +287,7 @@ export default function Profile() {
                 type="text"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                className="w-full text-sm px-3 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-400"
+                className="w-full text-sm px-3 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-600/20 focus:border-violet-500"
               />
             </div>
             <div>
@@ -308,7 +308,7 @@ export default function Profile() {
           <button
             onClick={handleSave}
             disabled={saving}
-            className="bg-gradient-to-r from-purple-900 to-purple-600 text-white text-xs font-semibold px-5 py-2.5 rounded-lg hover:opacity-95 hover:-translate-y-0.5 hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.45)] active:scale-95 transition-all duration-200 ease-out disabled:opacity-50"
+            className="bg-gradient-to-r from-violet-900 to-violet-700 text-white text-xs font-semibold px-5 py-2.5 rounded-lg hover:opacity-95 hover:-translate-y-0.5 hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.45)] active:scale-95 transition-all duration-200 ease-out disabled:opacity-50"
           >
             {saving ? "Saving..." : "Save Changes"}
           </button>
@@ -323,10 +323,10 @@ export default function Profile() {
         {statCards.map((s) => (
           <div
             key={s.label}
-            className="bg-white rounded-xl shadow-sm px-5 py-4 flex items-center gap-4 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(147,51,234,0.25)] transition-all duration-200 ease-out"
+            className="bg-white rounded-xl shadow-sm px-5 py-4 flex items-center gap-4 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(109,40,217,0.25)] transition-all duration-200 ease-out"
           >
-            <div className="w-10 h-10 rounded-lg bg-purple-50 flex items-center justify-center shrink-0">
-              <s.icon className="w-5 h-5 text-purple-600" />
+            <div className="w-10 h-10 rounded-lg bg-violet-50 flex items-center justify-center shrink-0">
+              <s.icon className="w-5 h-5 text-violet-700" />
             </div>
             <div>
               <p className="text-lg font-bold text-gray-900">{s.value}</p>
@@ -337,12 +337,12 @@ export default function Profile() {
       </div>
 
       {/* Recent Activity */}
-      <div className="bg-white rounded-xl shadow-sm hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(147,51,234,0.25)] transition-all duration-200 ease-out">
+      <div className="bg-white rounded-xl shadow-sm hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(109,40,217,0.25)] transition-all duration-200 ease-out">
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
           <h2 className="text-sm font-bold text-gray-900">Recent Activity</h2>
           <button
             onClick={() => setShowAllActivity((p) => !p)}
-            className="text-[11px] text-purple-600 hover:text-purple-700 font-semibold transition"
+            className="text-[11px] text-violet-700 hover:text-violet-800 font-semibold transition"
           >
             {showAllActivity ? "Show less" : "View all"}
           </button>
@@ -358,8 +358,8 @@ export default function Profile() {
                 key={item.id}
                 className="flex items-center gap-4 px-6 py-3.5 hover:bg-gray-50 transition"
               >
-                <div className="w-8 h-8 rounded-full bg-purple-50 flex items-center justify-center shrink-0">
-                  <Bot className="w-4 h-4 text-purple-500" />
+                <div className="w-8 h-8 rounded-full bg-violet-50 flex items-center justify-center shrink-0">
+                  <Bot className="w-4 h-4 text-violet-600" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-xs text-gray-800 break-words">{item.text}</p>

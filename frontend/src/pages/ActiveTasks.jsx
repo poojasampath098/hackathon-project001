@@ -5,7 +5,7 @@ import Badge from "../components/ui/Badge";
 import { taskApi } from "../services/task.api";
 
 const AVATAR_GRADIENTS = [
-  "from-purple-400 to-indigo-600",
+  "from-violet-500 to-indigo-600",
   "from-blue-400 to-cyan-600",
   "from-red-400 to-orange-500",
   "from-emerald-400 to-teal-600",
@@ -94,8 +94,8 @@ export default function ActiveTasks() {
             onClick={() => setHighPriorityOnly((v) => !v)}
             className={`px-3 py-1.5 text-xs font-medium rounded-lg border transition-all duration-200 ease-out ${
               highPriorityOnly
-                ? "text-purple-600 bg-purple-50 border-purple-200 hover:-translate-y-0.5 hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)]"
-                : "text-gray-600 border-gray-200 bg-white hover:bg-purple-50/50 hover:border-purple-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(147,51,234,0.35)]"
+                ? "text-violet-700 bg-violet-50 border-violet-200 hover:-translate-y-0.5 hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.35)]"
+                : "text-gray-600 border-gray-200 bg-white hover:bg-violet-50/50 hover:border-violet-100 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_8px_18px_-8px_rgba(109,40,217,0.35)]"
             }`}
           >
             High Priority
@@ -111,7 +111,7 @@ export default function ActiveTasks() {
 
       {loading ? (
         <div className="flex items-center justify-center py-12">
-          <div className="w-8 h-8 border-2 border-purple-600 border-t-transparent rounded-full animate-spin" />
+          <div className="w-8 h-8 border-2 border-violet-700 border-t-transparent rounded-full animate-spin" />
         </div>
       ) : error ? (
         <div className="bg-white rounded-xl shadow-sm p-8 text-center">
@@ -130,7 +130,7 @@ export default function ActiveTasks() {
           {visibleTasks.map((task, i) => (
             <div
               key={task.id}
-              className="bg-white rounded-xl shadow-sm p-5 flex items-center gap-4 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(147,51,234,0.25)] transition-all duration-200 ease-out"
+              className="bg-white rounded-xl shadow-sm p-5 flex items-center gap-4 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_12px_30px_-12px_rgba(109,40,217,0.25)] transition-all duration-200 ease-out"
             >
               <div className="relative shrink-0">
                 <div
@@ -165,7 +165,7 @@ export default function ActiveTasks() {
                 </button>
               </div>
 
-              <button className="p-1 rounded hover:bg-purple-50 hover:-translate-y-0.5 hover:scale-[1.02] transition-all duration-200 ease-out shrink-0">
+              <button className="p-1 rounded hover:bg-violet-50 hover:-translate-y-0.5 hover:scale-[1.02] transition-all duration-200 ease-out shrink-0">
                 <MoreHorizontal className="w-4 h-4 text-gray-400" />
               </button>
             </div>

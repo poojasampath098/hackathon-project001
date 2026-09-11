@@ -42,14 +42,11 @@ Format your response with clear sections and key points.`,
     }
     return result;
   } catch (err) {
-    logger.error("Research tool failed", err);
-    if (err.message && err.message.includes("API key")) {
-      throw new Error("Research service configuration error");
-    }
-    if (err.message && err.message.includes("currently unavailable")) {
-      throw err;
-    }
-    throw new Error("Research service is currently unavailable.");
+    logger.error("Research tool failed", {
+      errorCategory: err.aiErrorCategory || "unknown",
+      errorMessage: err.message,
+    });
+    throw err;
   }
 }
 
