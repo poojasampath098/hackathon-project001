@@ -52,6 +52,25 @@
   animation: activity-pop-in 300ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* ---- Dashboard stat card floating (decorative) ----
+   Whole card drifts softly (transform) while a subtle violet glow pulses
+   (filter) — both run on the same card via a single animation list. */
+@keyframes stat-card-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -7px, 0); }
+}
+
+@keyframes stat-card-glow {
+  0%, 100% { filter: drop-shadow(0 6px 14px rgba(109, 40, 217, 0.15)); }
+  50% { filter: drop-shadow(0 20px 34px rgba(109, 40, 217, 0.32)); }
+}
+
+.stat-card-float-glow {
+  animation:
+    stat-card-float 6s ease-in-out infinite,
+    stat-card-glow 6s ease-in-out infinite;
+}
+
 /* ---- Aether ambient background (decorative only) ---- */
 body {
   background-color: #f8f7fc;
@@ -108,6 +127,9 @@ body {
     animation: none;
   }
   .activity-pop-in {
+    animation: none;
+  }
+  .stat-card-float-glow {
     animation: none;
   }
 }

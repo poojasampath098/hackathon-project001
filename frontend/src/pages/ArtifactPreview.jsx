@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, Download, Trash2, FileText, Search, Bell, XCircle, CheckCircle2 } from "lucide-react";
 import Badge from "../components/ui/Badge";
 import { artifactApi } from "../services/artifact.api";
+import downloadArtifactFile from "../utils/artifactDownload";
 
 function formatDate(value) {
   if (!value) return "—";
@@ -31,20 +32,6 @@ function formatContent(content) {
   } catch {
     return String(content);
   }
-}
-
-function showDownloadedContent(content, name) {
-  const value = content && typeof content === "object" ? content : { content };
-  const json = JSON.stringify(value, null, 2);
-  const blob = new Blob([json], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = `${(name || "artifact").replace(/[^a-zA-Z0-9_\-. ]/g, "_")}.json`;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  URL.revokeObjectURL(url);
 }
 
 export default function ArtifactPreview() {
@@ -84,7 +71,7 @@ export default function ArtifactPreview() {
     const artifactId = item._id || item.id;
     try {
       const res = await artifactApi.download(artifactId);
-      showDownloadedContent(res?.data ?? res, item.name);
+      downloadArtifactFile(res?.data ?? res, item.name);
       showToast("Artifact downloaded");
     } catch (err) {
       showToast(err.message || "Download failed", "error");

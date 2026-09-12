@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ArrowLeft, Download, FileText, Trash2, Search, Bell, XCircle, CheckCircle2 } from "lucide-react";
 import Badge from "../components/ui/Badge";
 import { artifactApi } from "../services/artifact.api";
+import downloadArtifactFile from "../utils/artifactDownload";
 import { taskApi } from "../services/task.api";
 
 function formatDate(value) {
@@ -24,20 +25,6 @@ function typeBadge(type) {
     default:
       return <Badge variant="gray">{type || "Unknown"}</Badge>;
   }
-}
-
-function showDownloadedContent(content, name) {
-  const value = content && typeof content === "object" ? content : { content };
-  const json = JSON.stringify(value, null, 2);
-  const blob = new Blob([json], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = `${(name || "artifact").replace(/[^a-zA-Z0-9_\-. ]/g, "_")}.json`;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  URL.revokeObjectURL(url);
 }
 
 export default function Artifacts() {
@@ -95,7 +82,7 @@ export default function Artifacts() {
   const handleDownload = async (id, name) => {
     try {
       const res = await artifactApi.download(id);
-      showDownloadedContent(res?.data ?? res, name);
+      downloadArtifactFile(res?.data ?? res, name);
       const safe = (name || "artifact").replace(/[^a-zA-Z0-9_\-. ]/g, "_");
       showToast(`${safe || "Artifact"} downloaded`);
     } catch (err) {

@@ -17,6 +17,7 @@ import Badge from "../components/ui/Badge";
 import { taskApi } from "../services/task.api";
 import { executionApi } from "../services/execution.api";
 import { artifactApi } from "../services/artifact.api";
+import downloadArtifactFile from "../utils/artifactDownload";
 
 const capitalize = (s) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : "—");
 
@@ -121,20 +122,6 @@ function formatJson(value) {
   } catch {
     return String(value);
   }
-}
-
-function downloadArtifactFile(content, name) {
-  const value = content && typeof content === "object" ? content : { content };
-  const json = JSON.stringify(value, null, 2);
-  const blob = new Blob([json], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = `${(name || "artifact").replace(/[^a-zA-Z0-9_\-. ]/g, "_")}.json`;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  URL.revokeObjectURL(url);
 }
 
 export default function TaskDetails() {

@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import {
   MoreHorizontal,
@@ -26,7 +26,7 @@ import {
   Cell,
 } from "recharts";
 import robotMascot from "../assets/robot-mascot.png";
-import heroVideo from "../assets/hero-video.mp4.mp4";
+import heroVideo from "../assets/hero-video.webm";
 import activeTasksIcon from "../assets/active-tasks.png";
 import completedTasksIcon from "../assets/completed-tasks.png";
 import pendingApprovalsIcon from "../assets/pending-approvals.png";
@@ -82,6 +82,40 @@ function activityMeta(type) {
   return { label: t, color: "bg-gray-100 text-gray-600", icon: <CheckCircle2 className="w-4 h-4 text-gray-500" /> };
 }
 
+function useTypewriter(text, { speed = 90, delay = 350, enabled = true } = {}) {
+  const [typed, setTyped] = useState(enabled ? "" : text);
+  const [done, setDone] = useState(!enabled);
+  const timerRef = useRef(null);
+  const intervalRef = useRef(null);
+
+  useEffect(() => {
+    if (!enabled) {
+      setTyped(text);
+      setDone(true);
+      return undefined;
+    }
+    let i = 0;
+    setTyped("");
+    setDone(false);
+    timerRef.current = setTimeout(() => {
+      intervalRef.current = setInterval(() => {
+        i += 1;
+        setTyped(text.slice(0, i));
+        if (i >= text.length) {
+          clearInterval(intervalRef.current);
+          setDone(true);
+        }
+      }, speed);
+    }, delay);
+    return () => {
+      clearTimeout(timerRef.current);
+      clearInterval(intervalRef.current);
+    };
+  }, [text, speed, delay, enabled]);
+
+  return { typed, done };
+}
+
 export default function Dashboard() {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
@@ -89,6 +123,15 @@ export default function Dashboard() {
   const displayName = user
     ? [user.firstName, user.lastName].filter(Boolean).join(" ") || user.email?.split("@")[0] || "User"
     : "User";
+
+  const reduceMotion =
+    typeof window !== "undefined" &&
+    typeof window.matchMedia === "function" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const { typed: typedName, done: nameDone } = useTypewriter(displayName, {
+    enabled: !reduceMotion,
+  });
 
   // API data state
   const [summary, setSummary] = useState(null);
@@ -114,6 +157,13 @@ export default function Dashboard() {
       });
     return () => { cancelled = true; };
   }, []);
+
+  const STAT_CARD_TIMINGS = [
+    { duration: 6, delay: 0 },
+    { duration: 6.9, delay: 0.9 },
+    { duration: 5.7, delay: 1.7 },
+    { duration: 7.3, delay: 2.6 },
+  ];
 
   const statTrend = (key, flat) => ({
     current: summary?.trends?.[key]?.current ?? flat,
@@ -218,7 +268,7 @@ export default function Dashboard() {
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="auto"
             tabIndex={-1}
           />
         </div>
@@ -242,7 +292,12 @@ export default function Dashboard() {
             >
               Welcome back,
               <br />
-              <span className="text-[#581C87]">{displayName}</span>
+              <span className="text-[#581C87]">
+                {typedName}
+                {!nameDone && (
+                  <span className="inline-block w-[2px] h-[0.9em] ml-1 bg-[#581C87] align-middle animate-pulse" />
+                )}
+              </span>
             </h1>
             <p className="text-sm text-gray-500 mt-3 max-w-xl">
               {loading
@@ -311,11 +366,17 @@ export default function Dashboard() {
         <>
           {/* Stat Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
-            {stats.map((stat) => (
+            {stats.map((stat, cardIndex) => {
+                const floatTiming = STAT_CARD_TIMINGS[cardIndex];
+                return (
               <div
                 key={stat.label}
                 onClick={() => navigate(stat.to)}
-                className="bg-white/85 backdrop-blur-sm border border-gray-100/80 rounded-2xl shadow-sm p-5 relative overflow-hidden hover:bg-white/95 hover:border-violet-200/70 hover:-translate-y-0.5 hover:scale-[1.01] hover:shadow-[0_20px_45px_-12px_rgba(109,40,217,0.45)] cursor-pointer transition-all duration-200 ease-out motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100"
+                style={{
+                  animationDuration: `${floatTiming.duration}s`,
+                  animationDelay: `-${floatTiming.delay}s`,
+                }}
+                className="stat-card-float-glow bg-white/85 backdrop-blur-sm border border-gray-100/80 rounded-2xl shadow-sm p-5 relative overflow-hidden hover:bg-white/95 hover:border-violet-300/70 hover:shadow-[0_20px_45px_-12px_rgba(109,40,217,0.5)] cursor-pointer transition-all duration-200 ease-out motion-reduce:transition-none"
               >
                 <div className="flex items-center gap-3 mb-3">
                   <div className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 overflow-hidden ${stat.badge}`}>
@@ -328,7 +389,8 @@ export default function Dashboard() {
                 <p className="text-2xl font-bold text-gray-900 tabular-nums">{stat.value}</p>
                 <TrendIndicator current={stat.current} previous={stat.previous} />
               </div>
-            ))}
+                );
+              })}
           </div>
 
           {/* Charts Row */}

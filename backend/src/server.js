@@ -29,7 +29,11 @@ const app = express();
 logger.info(`AI provider: NVIDIA NIM`);
 logger.info(`AI model: ${config.aiModel}`);
 
-app.use(helmet());
+app.use(
+  helmet({
+    crossOriginOpenerPolicy: { policy: "same-origin-allow-popups" },
+  })
+);
 app.use(express.json());
 app.use(
   cors({
