@@ -54,6 +54,38 @@ function verifyVerificationTicket(token) {
   return decoded;
 }
 
+// Password-reset authorization ticket. Issued ONLY by a successful OTP
+// verification. It is short-lived and single-purpose: it authorizes the next
+// password-reset step and must never be used to access authenticated routes.
+// Single-use is enforced server-side by comparing against user.passwordChangedAt.
+const RESET_TICKET_EXPIRY_S = 10 * 60; // 10 minutes, matching OTP_EXPIRY_MS
+const RESET_TICKET_PURPOSE = "password_reset";
+
+function generatePasswordResetTicket(userId, email) {
+  return jwt.sign(
+    { purpose: RESET_TICKET_PURPOSE, userId, email },
+    config.jwtSecret,
+    { expiresIn: RESET_TICKET_EXPIRY_S }
+  );
+}
+
+function verifyPasswordResetTicket(token) {
+  let decoded;
+  try {
+    decoded = jwt.verify(token, config.jwtSecret);
+  } catch {
+    const err = new Error("Password reset session expired or invalid — please start over");
+    err.statusCode = 400;
+    throw err;
+  }
+  if (!decoded || decoded.purpose !== RESET_TICKET_PURPOSE || !decoded.userId) {
+    const err = new Error("Password reset session expired or invalid — please start over");
+    err.statusCode = 400;
+    throw err;
+  }
+  return decoded;
+}
+
 module.exports = {
   hashPassword,
   comparePassword,
@@ -61,4 +93,6 @@ module.exports = {
   verifyAccessToken,
   generateVerificationTicket,
   verifyVerificationTicket,
+  generatePasswordResetTicket,
+  verifyPasswordResetTicket,
 };

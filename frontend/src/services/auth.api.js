@@ -8,5 +8,8 @@ export const authApi = {
   verifyOtp: (email, otp) => api.post('/auth/verify-otp', { email, otp }),
   sendRegistrationOtp: (email) => api.post('/auth/register/send-otp', { email }),
   verifyRegistrationOtp: (email, otp) => api.post('/auth/register/verify-otp', { email, otp }),
+  requestPasswordResetOtp: (email) => api.post('/auth/password-reset/request-otp', { email }),
+  verifyPasswordResetOtp: (email, otp) => api.post('/auth/password-reset/verify-otp', { email, otp }),
+  resetPassword: (data) => api.post('/auth/password-reset/reset', data),
   googleSignIn: (credential) => api.post('/auth/google', { credential }),
 };

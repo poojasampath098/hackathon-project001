@@ -200,9 +200,9 @@ const sections = [
           ]}
         />
         <Bullets
-          tone="warn"
           items={[
-            "The \u201CForgot Password?\u201D link on the login form is a placeholder — there is no password-reset flow in this version. If you lose access, register a new account with a different email address.",
+            "Use the \u201CForgot Password?\u201D link on the login form to reset your password. Enter your email, enter the verification code sent to it, then choose a new password.",
+            "The verification code expires after 10 minutes, and repeated wrong attempts invalidate it \u2014 just request a fresh code and try again.",
           ]}
         />
       </>

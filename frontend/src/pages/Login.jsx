@@ -4,10 +4,12 @@ import { Mail, Lock, ArrowRight, LayoutDashboard, Eye, EyeOff } from "lucide-rea
 import loginVideo from "../assets/login-video.mp4.webm";
 import { AuthContext } from "../context/AuthContext";
 import GoogleSignInButton from "../components/auth/GoogleSignInButton";
+import ForgotPassword from "../components/auth/ForgotPassword";
 
 export default function Login() {
   const navigate = useNavigate();
   const { login, loginWithGoogle } = useContext(AuthContext);
+  const [mode, setMode] = useState("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -94,6 +96,10 @@ export default function Login() {
 
         {/* RIGHT PANEL */}
         <div className="w-full md:w-[55%] px-10 py-10 flex flex-col justify-center">
+          {mode === "forgot" ? (
+            <ForgotPassword onBack={() => setMode("login")} />
+          ) : (
+            <>
           <h2 className="text-xl font-bold text-gray-900">Welcome Back</h2>
           <p className="text-gray-500 text-xs mt-1 mb-5">
             Sign in to access your autonomous agents.
@@ -128,9 +134,13 @@ export default function Login() {
                 <label className="text-xs font-semibold text-gray-800">
                   Password
                 </label>
-                <a href="#" className="text-xs text-violet-700 font-medium">
+                <button
+                  type="button"
+                  onClick={() => setMode("forgot")}
+                  className="text-xs text-violet-700 font-medium hover:text-violet-800 transition"
+                >
                   Forgot Password?
-                </a>
+                </button>
               </div>
               <div className="mt-1 flex items-center border rounded-lg px-3 py-2 bg-gray-50">
                 <Lock className="w-4 h-4 text-gray-400 mr-2" />
@@ -177,6 +187,8 @@ export default function Login() {
             Don't have an account?{" "}
             <Link to="/register" className="text-violet-700 font-medium">Register here</Link>
           </p>
+            </>
+          )}
         </div>
       </div>
     </div>

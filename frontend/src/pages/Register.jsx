@@ -1,7 +1,7 @@
 import { useState, useContext, useRef, useEffect, useCallback } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { User, Mail, Lock, ArrowRight, LayoutDashboard, Eye, EyeOff, CheckCircle2 } from "lucide-react";
-import robotMascot from "../assets/robot-mascot.png";
+import loginVideo from "../assets/login-video.mp4.webm";
 import { AuthContext } from "../context/AuthContext";
 import GoogleSignInButton from "../components/auth/GoogleSignInButton";
 
@@ -240,10 +240,17 @@ export default function Register() {
 
         {/* LEFT PANEL */}
         <div className="w-full md:w-[45%] flex flex-col items-center justify-center text-center px-10 py-14 bg-gradient-to-br from-violet-100 via-violet-50 to-white">
-          <img
-            src={robotMascot}
-            alt="AetherAI robot mascot"
-            className="mb-8 w-[240px] h-auto object-contain"
+          {/* Looped video in robot's spot, dark bg hidden via screen blend (decorative only) */}
+          <video
+            className="mb-8 w-[300px] h-[300px] rounded-full object-cover pointer-events-none select-none"
+            src={loginVideo}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            aria-hidden="true"
+            tabIndex={-1}
           />
           <h1 className="text-2xl font-bold leading-snug text-gray-900">
             AetherAI: Your <br />

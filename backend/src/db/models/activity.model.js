@@ -5,7 +5,7 @@ const VALID_TYPES = [
   "execution_started", "execution_completed", "execution_failed", "execution_cancelled",
   "approval_requested", "approval_granted", "approval_rejected",
   "ai_request", "ai_response",
-  "user_registered", "user_logged_in",
+  "user_registered", "user_logged_in", "user_password_reset",
   "schedule_created", "schedule_toggled", "schedule_deleted",
   "artifact_created",
 ];

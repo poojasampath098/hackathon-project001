@@ -155,6 +155,21 @@ export function AuthProvider({ children }) {
     return authApi.verifyRegistrationOtp(email, otp);
   };
 
+  // Password recovery flow. These do NOT establish a session — the verify
+  // endpoint returns a short-lived reset ticket kept only in component memory;
+  // resetPassword uses it to change the password without logging anyone in.
+  const requestPasswordResetOtp = async (email) => {
+    return authApi.requestPasswordResetOtp(email);
+  };
+
+  const verifyPasswordResetOtp = async (email, otp) => {
+    return authApi.verifyPasswordResetOtp(email, otp);
+  };
+
+  const resetPassword = async (data) => {
+    return authApi.resetPassword(data);
+  };
+
   const logout = async () => {
     setToken(null);
     persistUser(null);
@@ -187,7 +202,7 @@ export function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider
-      value={{ user, loading, login, register, sendOtp, verifyOtp, sendRegistrationOtp, verifyRegistrationOtp, logout, updateUser, loginWithGoogle, isAuthenticated: !!user }}
+      value={{ user, loading, login, register, sendOtp, verifyOtp, sendRegistrationOtp, verifyRegistrationOtp, requestPasswordResetOtp, verifyPasswordResetOtp, resetPassword, logout, updateUser, loginWithGoogle, isAuthenticated: !!user }}
     >
       {children}
     </AuthContext.Provider>

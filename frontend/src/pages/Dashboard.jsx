@@ -5,9 +5,6 @@ import {
   Activity,
   CheckCircle2,
   XCircle,
-  ClipboardCheck,
-  Users,
-  CirclePlay,
   Plus,
   ArrowRight,
   ShieldCheck,
@@ -30,6 +27,10 @@ import {
 } from "recharts";
 import robotMascot from "../assets/robot-mascot.png";
 import heroVideo from "../assets/hero-video.mp4.mp4";
+import activeTasksIcon from "../assets/active-tasks.png";
+import completedTasksIcon from "../assets/completed-tasks.png";
+import pendingApprovalsIcon from "../assets/pending-approvals.png";
+import runningExecutionsIcon from "../assets/running-execution.png";
 import TopBar from "../components/layout/TopBar";
 import TrendIndicator from "../components/ui/TrendIndicator";
 import { dashboardApi } from "../services/dashboard.api";
@@ -125,7 +126,7 @@ export default function Dashboard() {
           label: "Active Tasks",
           value: String(summary.activeTasks ?? 0),
           to: "/active-tasks",
-          icon: <ClipboardCheck className="w-4 h-4 text-violet-700" />,
+          icon: <img src={activeTasksIcon} alt="Active Tasks" className="w-8 h-8 rounded-full object-cover" />,
           badge: "bg-gradient-to-br from-violet-100 to-violet-200",
           ...statTrend("activeTasks", summary.activeTasks ?? 0),
         },
@@ -133,7 +134,7 @@ export default function Dashboard() {
           label: "Completed Tasks",
           value: String(summary.completedTasks ?? 0),
           to: "/completed-today",
-          icon: <CheckCircle2 className="w-4 h-4 text-violet-700" />,
+          icon: <img src={completedTasksIcon} alt="Completed Tasks" className="w-8 h-8 rounded-full object-cover" />,
           badge: "bg-gradient-to-br from-violet-100 to-violet-200",
           ...statTrend("completedTasks", summary.completedTasks ?? 0),
         },
@@ -141,7 +142,7 @@ export default function Dashboard() {
           label: "Pending Approvals",
           value: String(summary.pendingApprovals ?? 0),
           to: "/pending-approvals",
-          icon: <Users className="w-4 h-4 text-violet-700" />,
+          icon: <img src={pendingApprovalsIcon} alt="Pending Approvals" className="w-8 h-8 rounded-full object-cover" />,
           badge: "bg-gradient-to-br from-violet-100 to-violet-200",
           ...statTrend("pendingApprovals", summary.pendingApprovals ?? 0),
         },
@@ -149,7 +150,7 @@ export default function Dashboard() {
           label: "Running Executions",
           value: String(summary.runningExecutions ?? 0),
           to: "/executions",
-          icon: <CirclePlay className="w-4 h-4 text-violet-700" />,
+          icon: <img src={runningExecutionsIcon} alt="Running Executions" className="w-8 h-8 rounded-full object-cover" />,
           badge: "bg-gradient-to-br from-violet-100 to-violet-200",
           ...statTrend("runningExecutions", summary.runningExecutions ?? 0),
         },
@@ -217,7 +218,7 @@ export default function Dashboard() {
             muted
             loop
             playsInline
-            preload="auto"
+            preload="metadata"
             tabIndex={-1}
           />
         </div>
@@ -317,7 +318,7 @@ export default function Dashboard() {
                 className="bg-white/85 backdrop-blur-sm border border-gray-100/80 rounded-2xl shadow-sm p-5 relative overflow-hidden hover:bg-white/95 hover:border-violet-200/70 hover:-translate-y-0.5 hover:scale-[1.01] hover:shadow-[0_20px_45px_-12px_rgba(109,40,217,0.45)] cursor-pointer transition-all duration-200 ease-out motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100"
               >
                 <div className="flex items-center gap-3 mb-3">
-                  <div className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 ${stat.badge}`}>
+                  <div className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 overflow-hidden ${stat.badge}`}>
                     {stat.icon}
                   </div>
                   <span className="text-xs text-gray-500 font-medium leading-snug">
